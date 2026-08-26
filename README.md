@@ -58,6 +58,7 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 
 ### 3. Integrated Agile Ceremony & Forecasting Toolkit
 - **Monte Carlo Velocity Forecaster:** Runs 1,000–10,000 probabilistic simulations based on historical velocity distribution ($\mu, \sigma$) to output P95, P85, P50, and P15 confidence delivery intervals.
+- **15-Minute Daily Standup Facilitator:** Timeboxed ceremony coordinator with 2-minute speaker rotation, 3 classical Scrum questions logger, 16th-minute parking lot, and 1-click blocker escalation to the RAID log.
 - **Interactive Retrospective Board:** 3-column board (*What Went Well*, *What Needs Improvement*, *Action Items*) with real-time upvoting and local persistence.
 - **Planning Poker Story Point Estimator:** Interactive Fibonacci deck (1, 2, 3, 5, 8, 13, 21, ?, Pass) with simulated squad voting and consensus calculation.
 - **Interactive RAID Log Manager:** Filterable register with 5 x 5 Likelihood x Impact scoring and modal entry forms.
@@ -113,6 +114,7 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 │   ├── sprintBoard.js                # Interactive drag-and-drop Sprint Task Board
 │   ├── monteCarlo.js                 # Monte Carlo probabilistic velocity simulator
 │   ├── kanbanAnalytics.js            # Cumulative Flow Diagram & Little's Law analyzer
+│   ├── standupFacilitator.js         # 15-Minute Daily Scrum ceremony coordinator
 │   ├── retrospective.js              # Retrospective board logic & persistence
 │   ├── planningPoker.js              # Planning poker estimation logic
 │   ├── raidManager.js                # RAID log manager logic

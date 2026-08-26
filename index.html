@@ -50,6 +50,9 @@
       <button class="nav-tab" data-tab="kanban" id="tab-btn-kanban">
         Kanban Analytics
       </button>
+      <button class="nav-tab" data-tab="standup" id="tab-btn-standup">
+        Daily Standup
+      </button>
       <button class="nav-tab" data-tab="retrospective" id="tab-btn-retrospective">
         Retrospectives
       </button>
@@ -552,7 +555,131 @@
     </section>
 
     <!-- ===============================================================
-         TAB 5: Interactive Sprint Retrospective Board
+         TAB 5: 15-Minute Daily Standup Facilitator & Ceremony Clock
+         =============================================================== -->
+    <section id="tab-standup" class="tab-content">
+      <div style="margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.35rem;">15-Minute Daily Standup Facilitator</h2>
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Timeboxed Daily Scrum synchronization &bull; 2-minute speaker rotation &bull; Blocker escalation to RAID log
+        </div>
+      </div>
+
+      <!-- Total Meeting Timer Banner -->
+      <div class="standup-timer-banner">
+        <div class="standup-clock-display">
+          <div>
+            <span class="kpi-label" style="display: block;">Total Standup Timebox (15:00 Max)</span>
+            <span id="standup-total-time" class="mono" style="font-size: 2rem; font-weight: 800; color: var(--primary);">15:00</span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button id="btn-standup-toggle" class="btn btn-primary" onclick="StandupFacilitator.toggleTimer()">
+            Start Standup
+          </button>
+          <button class="btn btn-outline" onclick="StandupFacilitator.resetMeeting()">
+            Reset Meeting
+          </button>
+        </div>
+      </div>
+
+      <!-- 2-Column Standup Execution Grid -->
+      <div class="standup-hero-grid">
+        <!-- Left Column: Active Speaker Hero Card -->
+        <div class="card" style="padding: 1.5rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle);">
+            <div style="display: flex; align-items: center; gap: 0.85rem;">
+              <div id="current-speaker-avatar" class="dev-avatar" style="width: 44px; height: 44px; font-size: 1.1rem;">DS</div>
+              <div>
+                <span class="kpi-label">Active Speaker</span>
+                <h3 id="current-speaker-name" style="font-size: 1.15rem; margin-top: 0.15rem;">Dilshan Silva</h3>
+                <div id="current-speaker-role" style="font-size: 0.75rem; color: var(--text-muted);">Tech Lead / Backend</div>
+              </div>
+            </div>
+
+            <div style="text-align: right;">
+              <span class="kpi-label">Speaker Time (2:00)</span>
+              <div id="standup-speaker-time" class="mono" style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">02:00</div>
+            </div>
+          </div>
+
+          <!-- Speaker Progress Bar -->
+          <div class="progress-bar-wrap" style="height: 6px; margin: 1rem 0;">
+            <div id="standup-speaker-progress" class="progress-bar-fill" style="width: 100%; background: var(--primary);"></div>
+          </div>
+
+          <!-- Allocated Sprint Tasks -->
+          <div style="margin-bottom: 1.25rem;">
+            <span class="kpi-label" style="display: block; margin-bottom: 0.4rem;">Assigned Sprint Deliverables</span>
+            <div id="current-speaker-tasks"></div>
+          </div>
+
+          <!-- 3 Classical Scrum Questions -->
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <div>
+              <label class="form-label" style="font-size: 0.78rem;">1. What did you accomplish yesterday?</label>
+              <input type="text" class="form-input" placeholder="e.g., Completed EMVCo QR decoding unit tests (FIN-101)">
+            </div>
+            <div>
+              <label class="form-label" style="font-size: 0.78rem;">2. What will you commit to today?</label>
+              <input type="text" class="form-input" placeholder="e.g., Wire up Redis transaction locking gateway">
+            </div>
+            <div>
+              <label class="form-label" style="font-size: 0.78rem;">3. Are there any blockers or impediments?</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="standup-input-blocker" class="form-input" placeholder="e.g., Stagnant PR #104 waiting for secondary review >48h">
+                <button type="button" class="btn btn-outline" style="white-space: nowrap; font-size: 0.78rem; border-color: var(--status-critical); color: var(--status-critical);" onclick="StandupFacilitator.escalateBlockerToRAID()">
+                  Escalate to RAID
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+            <button class="btn btn-outline" onclick="StandupFacilitator.previousSpeaker()">
+              &larr; Previous
+            </button>
+            <button class="btn btn-primary" onclick="StandupFacilitator.nextSpeaker()">
+              Next Speaker &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Speaker Queue & 16th-Minute Parking Lot -->
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <!-- Speaker Queue Card -->
+          <div class="card" style="padding: 1.25rem;">
+            <div class="card-header" style="margin-bottom: 0.75rem; padding-bottom: 0.5rem;">
+              <h3 class="card-title" style="font-size: 0.95rem;">Squad Speaker Queue</h3>
+            </div>
+            <div id="standup-speaker-queue" class="speaker-queue-list"></div>
+          </div>
+
+          <!-- 16th-Minute Parking Lot Card -->
+          <div class="card" style="padding: 1.25rem;">
+            <div class="card-header" style="margin-bottom: 0.75rem; padding-bottom: 0.5rem;">
+              <div>
+                <h3 class="card-title" style="font-size: 0.95rem;">16th-Minute Parking Lot</h3>
+                <div class="card-subtitle">Topics requiring deep breakout after 15m timebox</div>
+              </div>
+            </div>
+
+            <div id="standup-parking-lot-items" style="margin-bottom: 0.75rem;"></div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="input-parking-topic" class="form-input" placeholder="Add parking lot discussion topic..." style="font-size: 0.78rem;">
+              <button class="btn btn-primary" style="white-space: nowrap; font-size: 0.78rem;" onclick="StandupFacilitator.addParkingLotTopic()">
+                Add Topic
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 6: Interactive Sprint Retrospective Board
          =============================================================== -->
     <section id="tab-retrospective" class="tab-content">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
@@ -926,6 +1053,7 @@
   <script src="js/sprintBoard.js"></script>
   <script src="js/monteCarlo.js"></script>
   <script src="js/kanbanAnalytics.js"></script>
+  <script src="js/standupFacilitator.js"></script>
   <script src="js/retrospective.js"></script>
   <script src="js/planningPoker.js"></script>
   <script src="js/raidManager.js"></script>

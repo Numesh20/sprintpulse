@@ -14,6 +14,7 @@ const App = {
     SprintBoard.init();
     MonteCarloSimulator.init();
     KanbanAnalytics.init();
+    StandupFacilitator.init();
     SprintPlanningPoker.init();
     SprintRetrospective.render();
     SprintRAIDManager.render();
@@ -40,6 +41,7 @@ const App = {
         SprintBoard.render();
         MonteCarloSimulator.runSimulation();
         KanbanAnalytics.render();
+        StandupFacilitator.init();
         this.showToast(`Switched squad to ${SPRINT_PULSE_DATA.squads[e.target.value].name}`, 'info');
       });
     }
@@ -53,6 +55,7 @@ const App = {
         SprintBoard.render();
         MonteCarloSimulator.runSimulation();
         KanbanAnalytics.render();
+        StandupFacilitator.init();
         this.showToast(`Active sprint updated: ${e.target.value}`, 'info');
       });
     }
@@ -86,6 +89,8 @@ const App = {
       MonteCarloSimulator.runSimulation();
     } else if (tabId === 'kanban') {
       KanbanAnalytics.render();
+    } else if (tabId === 'standup') {
+      StandupFacilitator.render();
     } else if (tabId === 'retrospective') {
       SprintRetrospective.render();
     } else if (tabId === 'poker') {

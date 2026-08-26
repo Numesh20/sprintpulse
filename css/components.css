@@ -392,6 +392,78 @@
 }
 
 /* ===================================================================
+   3.4 15-Minute Daily Standup Facilitator Styles
+   =================================================================== */
+.standup-hero-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.standup-timer-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.standup-clock-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.speaker-queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.speaker-queue-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.speaker-queue-item:hover {
+  border-color: var(--border-active);
+  transform: translateX(3px);
+}
+
+.speaker-queue-item.active {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.08);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.speaker-queue-item.completed {
+  opacity: 0.55;
+}
+
+.parking-lot-item {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+/* ===================================================================
    3.3 Kanban Analytics & Cumulative Flow Diagram (CFD) Styles
    =================================================================== */
 .cfd-kpi-grid {
