@@ -59,6 +59,16 @@ const SPRINT_PULSE_DATA = {
             { sprint: 'Sprint 03', committed: 45, completed: 43, predictability: 95.5 },
             { sprint: 'Sprint 04 (Current)', committed: 44, completed: 36, predictability: 81.8 }
           ],
+          dailyCFD: [
+            { day: 1, done: 0, inReview: 0, inProgress: 2, toDo: 7 },
+            { day: 2, done: 0, inReview: 1, inProgress: 3, toDo: 5 },
+            { day: 3, done: 1, inReview: 1, inProgress: 3, toDo: 4 },
+            { day: 4, done: 2, inReview: 2, inProgress: 3, toDo: 3 },
+            { day: 5, done: 3, inReview: 1, inProgress: 3, toDo: 3 },
+            { day: 6, done: 4, inReview: 2, inProgress: 2, toDo: 2 },
+            { day: 7, done: 5, inReview: 2, inProgress: 2, toDo: 1 },
+            { day: 8, done: 5, inReview: 1, inProgress: 2, toDo: 1 }
+          ],
           tasks: [
             { id: 'FIN-101', title: 'Implement EMVCo QR code parsing algorithm', sp: 5, status: 'Done', assignee: 'Dilshan Silva', reviewHours: 12 },
             { id: 'FIN-102', title: 'Design responsive mobile checkout QR scanner component', sp: 8, status: 'Done', assignee: 'Nadeesha Fernando', reviewHours: 18 },
@@ -157,6 +167,16 @@ const SPRINT_PULSE_DATA = {
             { sprint: 'Sprint 03', committed: 36, completed: 34, predictability: 94.4 },
             { sprint: 'Sprint 04 (Current)', committed: 38, completed: 26, predictability: 68.4 }
           ],
+          dailyCFD: [
+            { day: 1, done: 0, inReview: 0, inProgress: 2, toDo: 5 },
+            { day: 2, done: 0, inReview: 1, inProgress: 2, toDo: 4 },
+            { day: 3, done: 1, inReview: 1, inProgress: 2, toDo: 3 },
+            { day: 4, done: 2, inReview: 1, inProgress: 3, toDo: 3 },
+            { day: 5, done: 3, inReview: 2, inProgress: 2, toDo: 2 },
+            { day: 6, done: 3, inReview: 2, inProgress: 2, toDo: 1 },
+            { day: 7, done: 4, inReview: 2, inProgress: 1, toDo: 1 },
+            { day: 8, done: 4, inReview: 1, inProgress: 1, toDo: 1 }
+          ],
           tasks: [
             { id: 'ECM-201', title: 'High-throughput inventory decrement using Redis locks', sp: 8, status: 'Done', assignee: 'Malik Deen', reviewHours: 14 },
             { id: 'ECM-202', title: 'Flash sale countdown timer animation with sticky header', sp: 5, status: 'Done', assignee: 'Anuki Senaratne', reviewHours: 10 },
@@ -215,6 +235,16 @@ const SPRINT_PULSE_DATA = {
             { sprint: 'Sprint 02', committed: 34, completed: 33, predictability: 97.0 },
             { sprint: 'Sprint 03', committed: 35, completed: 35, predictability: 100.0 },
             { sprint: 'Sprint 04 (Current)', committed: 36, completed: 32, predictability: 88.9 }
+          ],
+          dailyCFD: [
+            { day: 1, done: 0, inReview: 0, inProgress: 2, toDo: 4 },
+            { day: 2, done: 0, inReview: 1, inProgress: 2, toDo: 3 },
+            { day: 3, done: 1, inReview: 1, inProgress: 2, toDo: 2 },
+            { day: 4, done: 2, inReview: 1, inProgress: 2, toDo: 1 },
+            { day: 5, done: 3, inReview: 1, inProgress: 1, toDo: 1 },
+            { day: 6, done: 4, inReview: 1, inProgress: 1, toDo: 0 },
+            { day: 7, done: 4, inReview: 1, inProgress: 1, toDo: 0 },
+            { day: 8, done: 4, inReview: 1, inProgress: 1, toDo: 0 }
           ],
           tasks: [
             { id: 'SAS-301', title: 'Setup pgvector extension on AWS Aurora PostgreSQL', sp: 5, status: 'Done', assignee: 'Ashan Gamage', reviewHours: 8 },

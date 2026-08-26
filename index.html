@@ -47,6 +47,9 @@
       <button class="nav-tab" data-tab="forecasting" id="tab-btn-forecasting">
         Forecasting
       </button>
+      <button class="nav-tab" data-tab="kanban" id="tab-btn-kanban">
+        Kanban Analytics
+      </button>
       <button class="nav-tab" data-tab="retrospective" id="tab-btn-retrospective">
         Retrospectives
       </button>
@@ -447,7 +450,109 @@
     </section>
 
     <!-- ===============================================================
-         TAB 4: Interactive Sprint Retrospective Board
+         TAB 4: Cumulative Flow Diagram (CFD) & Little's Law Analyzer
+         =============================================================== -->
+    <section id="tab-kanban" class="tab-content">
+      <div style="margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.35rem;">Cumulative Flow Diagram &amp; Little's Law Analyzer</h2>
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Queueing theory analytics &bull; WIP bottleneck visualization &bull; Lead Time = Work In Progress / Throughput
+        </div>
+      </div>
+
+      <!-- Flow Metrics KPI Grid -->
+      <div class="cfd-kpi-grid">
+        <div class="card" style="padding: 1.25rem;">
+          <div class="kpi-label">Active Work In Progress (WIP)</div>
+          <div id="cfd-wip-val" class="kpi-value mono" style="color: var(--primary);">-- Tasks</div>
+          <span id="cfd-wip-status-badge" class="kpi-badge badge-positive">WIP Healthy</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem;">In Progress + In Review items</div>
+        </div>
+
+        <div class="card" style="padding: 1.25rem;">
+          <div class="kpi-label">Average Delivery Throughput</div>
+          <div id="cfd-throughput-val" class="kpi-value mono" style="color: var(--status-on-track);">-- / day</div>
+          <span class="kpi-badge badge-neutral">Completed Items Rate</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem;">Stories delivered per working day</div>
+        </div>
+
+        <div class="card" style="padding: 1.25rem;">
+          <div class="kpi-label">Little's Law Lead Time</div>
+          <div id="cfd-leadtime-val" class="kpi-value mono" style="color: var(--accent-cyan);">-- Days</div>
+          <span class="kpi-badge badge-neutral">WIP / Throughput</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem;">Estimated turnaround per story</div>
+        </div>
+
+        <div class="card" style="padding: 1.25rem;">
+          <div class="kpi-label">Flow Efficiency Ratio</div>
+          <div id="cfd-flow-eff-val" class="kpi-value mono" style="color: #a855f7;">--%</div>
+          <span class="kpi-badge badge-positive">Active vs Queue</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem;">Active Dev / Total Lead Time</div>
+        </div>
+      </div>
+
+      <!-- CFD Stacked Area Chart -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <span class="card-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </span>
+            <div>
+              <h3 class="card-title">Cumulative Flow Diagram (CFD)</h3>
+              <div class="card-subtitle">Daily stacked area tracking of tasks across To Do &rarr; In Progress &rarr; In Review &rarr; Done</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-container" style="height: 340px;">
+          <canvas id="chart-cfd-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Little's Law Interactive Experimenter -->
+      <div class="littles-law-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h3 style="font-size: 1.05rem;">Little's Law Interactive Simulator</h3>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Adjust WIP Limits and Throughput to observe mathematical impact on delivery lead time</div>
+          </div>
+          <span class="brand-tag">L = WIP / T</span>
+        </div>
+
+        <div class="littles-law-grid">
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Work In Progress (WIP) Limit:</span>
+              <strong id="ll-wip-display" class="mono">4 Tasks</strong>
+            </div>
+            <input type="range" class="range-slider" min="1" max="12" step="1" value="4" oninput="KanbanAnalytics.setSimulatedWIP(this.value)">
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Lower WIP reduces queue waiting time</div>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Team Throughput:</span>
+              <strong id="ll-throughput-display" class="mono">0.8 Tasks/Day</strong>
+            </div>
+            <input type="range" class="range-slider" min="0.2" max="2.5" step="0.1" value="0.8" oninput="KanbanAnalytics.setSimulatedThroughput(this.value)">
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Tasks completed per calendar day</div>
+          </div>
+
+          <div class="ll-result-box">
+            <div class="kpi-label">Projected Lead Time</div>
+            <div id="ll-calc-leadtime" class="mono" style="font-size: 1.7rem; font-weight: 800; color: var(--accent-cyan);">5.0 Days</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">Average duration to complete 1 task</div>
+          </div>
+        </div>
+
+        <div class="mc-guidance-box" style="margin-top: 1.25rem;">
+          <strong>Agile PM Principle:</strong> <em>"Stop Starting, Start Finishing."</em> Little's Law proves that trying to increase speed by assigning more tasks simultaneously (higher WIP) actually <strong>increases</strong> lead time and creates review queues. To deliver faster, agile teams enforce strict WIP limits.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 5: Interactive Sprint Retrospective Board
          =============================================================== -->
     <section id="tab-retrospective" class="tab-content">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
@@ -820,6 +925,7 @@
   <script src="js/riskEngine.js"></script>
   <script src="js/sprintBoard.js"></script>
   <script src="js/monteCarlo.js"></script>
+  <script src="js/kanbanAnalytics.js"></script>
   <script src="js/retrospective.js"></script>
   <script src="js/planningPoker.js"></script>
   <script src="js/raidManager.js"></script>

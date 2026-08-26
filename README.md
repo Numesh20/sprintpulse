@@ -49,6 +49,7 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 - **Interactive Daily Burndown & Burnup Canvas:** Visualizes Ideal Guideline vs. Actual Remaining Story Points with day-by-day milestone tooltips.
 - **Multi-Sprint Historical Velocity Trend:** Tracks team velocity and predictability ratios across consecutive sprints.
 - **Scope Creep / Volatility Index:** Automatically flags unapproved mid-sprint backlog additions.
+- **Cumulative Flow Diagram (CFD) & Little's Law Analyzer:** Visualizes multi-stage queue accumulation (To Do &rarr; In Progress &rarr; In Review &rarr; Done) and implements Little's Law ($\text{Lead Time} = \frac{\text{WIP}}{\text{Throughput}}$) with an interactive WIP limit simulator.
 
 ### 2. Automated Delivery Risk & Bottleneck Radar
 - **Resource Overallocation Detection:** Flags developers assigned >100% of their sprint capacity threshold.
@@ -111,6 +112,7 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 │   ├── riskEngine.js                 # Heuristic risk detector
 │   ├── sprintBoard.js                # Interactive drag-and-drop Sprint Task Board
 │   ├── monteCarlo.js                 # Monte Carlo probabilistic velocity simulator
+│   ├── kanbanAnalytics.js            # Cumulative Flow Diagram & Little's Law analyzer
 │   ├── retrospective.js              # Retrospective board logic & persistence
 │   ├── planningPoker.js              # Planning poker estimation logic
 │   ├── raidManager.js                # RAID log manager logic
