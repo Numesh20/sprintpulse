@@ -10,7 +10,7 @@ const SprintExportReport = {
   generateMarkdown(squad, sprint, kpis, risks, retroCards) {
     const today = new Date().toISOString().split('T')[0];
     
-    return `# 📊 Sprint Executive Delivery Briefing
+    return `# Sprint Executive Delivery Briefing
 
 **Project / Squad:** ${squad.name} (${squad.domain})  
 **Active Sprint:** ${sprint.name}  
@@ -20,7 +20,7 @@ const SprintExportReport = {
 
 ---
 
-## 🎯 1. Executive Summary & Sprint Health
+## 1. Executive Summary & Sprint Health
 
 - **Overall Sprint Health Index:** **${kpis.healthScore.value}/100** (${kpis.healthScore.status})
 - **Sprint Commitment:** **${kpis.committed} Story Points (SP)**
@@ -32,29 +32,29 @@ const SprintExportReport = {
 
 ---
 
-## ⚠️ 2. Key Delivery Risks & Blocker Radar
+## 2. Key Delivery Risks & Blocker Radar
 
-${risks.map(r => `- **[${r.type.toUpperCase()}] ${r.title}:** ${r.desc}\n  *Recommended PM Action:* ${r.recommendation}`).join('\n\n')}
+${risks.map(r => `- **[${r.type.toUpperCase()}] ${r.title}:** ${r.desc}\n  *Recommended Action:* ${r.recommendation}`).join('\n\n')}
 
 ---
 
-## 👥 3. Team Workload & Capacity Allocation
+## 3. Team Workload & Capacity Allocation
 
 | Team Member | Role | Capacity (SP) | Assigned (SP) | Allocation Status |
 | :--- | :--- | :---: | :---: | :--- |
 ${sprint.workload.map(w => {
-  const status = w.assignedSP > w.capacitySP ? '⚠️ Overloaded' : '✅ Balanced';
+  const status = w.assignedSP > w.capacitySP ? 'Overloaded' : 'Balanced';
   return `| ${w.name} | ${w.role} | ${w.capacitySP} SP | ${w.assignedSP} SP | ${status} |`;
 }).join('\n')}
 
 ---
 
-## 🔄 4. Retrospective Action Items for Next Sprint
+## 4. Retrospective Action Items for Next Sprint
 
-${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assignee || 'Team'}]** ${c.text} (👍 ${c.votes} votes)`).join('\n')}
+${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assignee || 'Team'}]** ${c.text} (${c.votes} votes)`).join('\n')}
 
 ---
-*Report automatically generated via **SprintPulse Agile Analytics Platform**.*
+*Report automatically generated via SprintPulse Agile Analytics Platform.*
 `;
   },
 
@@ -68,7 +68,6 @@ ${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assig
     const risks = SprintRiskEngine.evaluateSprintRisks(activeSprint);
     const retroCards = SprintRetrospective.getCards();
 
-    const mdContent = this.generateMarkdown(activeSquad, activeSprint, kpis, risks, retroCards);
     const previewContainer = document.getElementById('executive-report-content');
     if (previewContainer) {
       previewContainer.innerHTML = `
@@ -93,7 +92,7 @@ ${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assig
 
           <div class="report-grid-2col">
             <div class="card" style="padding: 1.25rem;">
-              <h3 style="font-size: 0.95rem; margin-bottom: 0.75rem;">📈 Delivery Velocity KPIs</h3>
+              <h3 style="font-size: 0.95rem; margin-bottom: 0.75rem;">Delivery Velocity KPIs</h3>
               <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
                 <li style="display: flex; justify-content: space-between;">
                   <span style="color: var(--text-muted);">Committed vs Done:</span>
@@ -115,7 +114,7 @@ ${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assig
             </div>
 
             <div class="card" style="padding: 1.25rem;">
-              <h3 style="font-size: 0.95rem; margin-bottom: 0.75rem;">🛡️ Delivery Risk Summary</h3>
+              <h3 style="font-size: 0.95rem; margin-bottom: 0.75rem;">Delivery Risk Summary</h3>
               <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem;">
                 ${risks.map(r => `
                   <div style="padding: 0.5rem; background: var(--bg-input); border-radius: var(--radius-sm); border-left: 3px solid ${r.type === 'critical' ? 'var(--status-critical)' : r.type === 'warning' ? 'var(--status-warning)' : 'var(--status-info)'};">
@@ -127,7 +126,7 @@ ${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assig
           </div>
 
           <div style="margin-top: 1.5rem;">
-            <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">👥 Team Capacity & Allocation</h3>
+            <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Team Capacity &amp; Allocation</h3>
             <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
               <thead>
                 <tr style="background: var(--bg-input); text-align: left;">
@@ -158,10 +157,10 @@ ${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assig
 
           <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
             <button class="btn btn-outline" onclick="SprintExportReport.copyMarkdown()">
-              📋 Copy Markdown Briefing
+              Copy Markdown Briefing
             </button>
             <button class="btn btn-primary" onclick="window.print()">
-              🖨️ Print / Save as PDF
+              Print / Save as PDF
             </button>
           </div>
         </div>
@@ -178,9 +177,9 @@ ${retroCards.filter(c => c.category === 'action-items').map(c => `- **[${c.assig
 
     const md = this.generateMarkdown(activeSquad, activeSprint, kpis, risks, retroCards);
     navigator.clipboard.writeText(md).then(() => {
-      App.showToast('Executive Report copied to clipboard in Markdown format!', 'success');
+      App.showToast('Executive Report copied to clipboard in Markdown format.', 'success');
     }).catch(err => {
-      App.showToast('Failed to copy to clipboard', 'error');
+      App.showToast('Failed to copy to clipboard.', 'error');
     });
   }
 };

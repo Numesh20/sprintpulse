@@ -117,16 +117,16 @@ const SprintRAIDManager = {
           <td><strong>${item.type}</strong></td>
           <td style="max-width: 260px;">
             <div style="font-weight: 600;">${this.escapeHTML(item.title)}</div>
-            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">🛠️ ${this.escapeHTML(item.mitigation)}</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Mitigation: ${this.escapeHTML(item.mitigation)}</div>
           </td>
           <td>
             <span class="severity-pill ${severityClass}">${item.severity} (${item.score})</span>
           </td>
-          <td>👤 ${this.escapeHTML(item.owner)}</td>
+          <td>${this.escapeHTML(item.owner)}</td>
           <td><span class="kpi-badge badge-neutral">${item.status}</span></td>
           <td>
-            <button class="btn-icon" style="width: 26px; height: 26px; font-size: 0.75rem;" onclick="SprintRAIDManager.deleteItem('${item.id}')" title="Delete item">
-              ✕
+            <button class="btn-icon" style="width: 24px; height: 24px; font-size: 0.8rem;" onclick="SprintRAIDManager.deleteItem('${item.id}')" title="Delete item">
+              &times;
             </button>
           </td>
         </tr>

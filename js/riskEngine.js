@@ -74,7 +74,7 @@ const SprintRiskEngine = {
         alerts.push({
           id: 'risk-burndown-slip',
           type: 'warning',
-          title: 'Burndown Trajectory Lagging Ideal Schedule',
+          title: 'Burndown Trajectory Lagging Schedule',
           desc: `Remaining points (${currentDayData.remaining} SP) exceed ideal baseline (${currentDayData.ideal.toFixed(1)} SP) by ${variance.toFixed(1)} SP.`,
           recommendation: 'Check for hidden technical blockers or QA test environment delays.'
         });

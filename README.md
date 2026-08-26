@@ -1,22 +1,22 @@
-# ⚡ SprintPulse: Agile Velocity & Team Health Analytics Platform
+# SprintPulse: Agile Velocity & Team Health Analytics Platform
 
 <div align="center">
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-indigo.svg)
 ![Agile Framework](https://img.shields.io/badge/Agile-Scrum%20%26%20Kanban-cyan.svg)
 ![Documentation](https://img.shields.io/badge/PM%20Docs-100%25%20Complete-emerald.svg)
-![Deployment](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue.svg)
+![Deployment](https://img.shields.io/badge/Deploy-GitHub%20Pages%20%2F%20Vercel-blue.svg)
 ![Academic Affiliation](https://img.shields.io/badge/Faculty%20of%20Applied%20Sciences-SUSL-orange.svg)
 
 **An enterprise-grade Agile Project Management & Sprint Analytics Dashboard engineered for Associate IT Project Managers, Scrum Masters, and Engineering Leads.**
 
-[🚀 View Live Interactive Demo](https://Numesh20.github.io/sprintpulse) &bull; [📚 Read PM Documentation Suite](#-it-project-management-documentation-suite) &bull; [📊 Explore Features](#-key-features)
+[View Live Interactive Demo](https://Numesh20.github.io/sprintpulse) &bull; [Read PM Documentation Suite](#it-project-management-documentation-suite) &bull; [Explore Features](#key-features--capabilities)
 
 </div>
 
 ---
 
-## 📌 Executive Summary & Project Overview
+## Executive Summary & Project Overview
 
 Modern software engineering teams frequently experience sprint unpredictability, silent scope creep, and team burnout due to fragmented tracking tools. **SprintPulse** bridges the gap between raw development activity and actionable project management governance.
 
@@ -26,7 +26,7 @@ Built by an IT undergraduate at the **Sabaragamuwa University of Sri Lanka (SUSL
 
 ---
 
-## 📚 IT Project Management Documentation Suite
+## IT Project Management Documentation Suite
 
 The complete project lifecycle documentation is maintained under the [`/docs`](docs/) directory:
 
@@ -35,14 +35,14 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 | **[01. Project Charter](docs/01_PROJECT_CHARTER.md)** | Strategic business case & initiation | SMART Objectives, RACI Matrix, Budget & Resource Simulation |
 | **[02. Product Requirements (PRD)](docs/02_PRODUCT_REQUIREMENTS_PRD.md)** | Detailed functional & non-functional specs | User Personas, MoSCoW Prioritization, Gherkin Acceptance Criteria |
 | **[03. System Architecture](docs/03_SYSTEM_ARCHITECTURE.md)** | Technical design & data flows | Mermaid.js C4 Container Diagrams, Mathematical Metric Models |
-| **[04. Risk Register (RAID Log)](docs/04_RISK_REGISTER_RAID.md)** | Enterprise risk governance | $5 \times 5$ Likelihood vs. Impact Matrix, Mitigation & Contingency Plans |
+| **[04. Risk Register (RAID Log)](docs/04_RISK_REGISTER_RAID.md)** | Enterprise risk governance | 5 x 5 Likelihood vs. Impact Matrix, Mitigation & Contingency Plans |
 | **[05. WBS & Release Roadmap](docs/05_WBS_AND_ROADMAP.md)** | Delivery schedule & decomposition | 4-Level Work Breakdown Structure, Critical Path, Mermaid Gantt Chart |
-| **[06. Sprint 01 Delivery Report](docs/sprints/sprint_01_report.md)** | Sprint 1 review & retro | Velocity Predictability ($90.4\%$), Burndown analysis, Action items |
-| **[07. Sprint 02 Delivery Report](docs/sprints/sprint_02_report.md)** | Sprint 2 review & retro | Velocity Predictability ($95.5\%$), PR review swarm intervention |
+| **[06. Sprint 01 Delivery Report](docs/sprints/sprint_01_report.md)** | Sprint 1 review & retro | Velocity Predictability (90.4%), Burndown analysis, Action items |
+| **[07. Sprint 02 Delivery Report](docs/sprints/sprint_02_report.md)** | Sprint 2 review & retro | Velocity Predictability (95.5%), PR review swarm intervention |
 
 ---
 
-## ✨ Key Features & Capabilities
+## Key Features & Capabilities
 
 ### 1. Real-Time Agile Metrics & Analytics Engine
 - **Composite Sprint Health Index (0–100):** Weighted algorithm evaluating burndown adherence, predictability, scope volatility, and review bottlenecks.
@@ -51,37 +51,37 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 - **Scope Creep / Volatility Index:** Automatically flags unapproved mid-sprint backlog additions.
 
 ### 2. Automated Delivery Risk & Bottleneck Radar
-- **Resource Overallocation Detection:** Flags developers assigned $>100\%$ of their sprint capacity threshold.
-- **Code Review Bottleneck Alerts:** Identifies Pull Requests stagnating in review for $>48$ consecutive hours.
+- **Resource Overallocation Detection:** Flags developers assigned >100% of their sprint capacity threshold.
+- **Code Review Bottleneck Alerts:** Identifies Pull Requests stagnating in review for >48 consecutive hours.
 - **Actionable PM Recommendations:** Provides instant, context-aware remediation steps for the project manager.
 
 ### 3. Integrated Agile Ceremony Toolkit
 - **Interactive Retrospective Board:** 3-column board (*What Went Well*, *What Needs Improvement*, *Action Items*) with real-time upvoting and local persistence.
-- **Planning Poker Story Point Estimator:** Interactive Fibonacci deck ($1, 2, 3, 5, 8, 13, 21$) with simulated squad voting and consensus calculation.
-- **Interactive RAID Log Manager:** Filterable register with $5 \times 5$ Likelihood $\times$ Impact scoring and modal entry forms.
+- **Planning Poker Story Point Estimator:** Interactive Fibonacci deck (1, 2, 3, 5, 8, 13, 21, ?, Pass) with simulated squad voting and consensus calculation.
+- **Interactive RAID Log Manager:** Filterable register with 5 x 5 Likelihood x Impact scoring and modal entry forms.
 
 ### 4. Executive Stakeholder Report Generator
 - **One-Click Markdown Briefing:** Instant copyable executive summary formatted for Slack, MS Teams, or Email.
 - **Print-to-PDF Ready:** Clean, executive-ready printable layout for client and steering committee meetings.
 
 ### 5. Multi-Squad Preloaded Datasets
-- **💳 Fintech Core Banking Squad:** Strict compliance, high predictability.
-- **🛒 E-Commerce Mobile Squad:** Fast release cadence, high scope volatility.
-- **🤖 Enterprise SaaS AI Platform Squad:** Research spikes, review bottlenecks.
+- **Fintech Core Banking Squad:** Strict compliance, high predictability.
+- **E-Commerce Mobile Squad:** Fast release cadence, high scope volatility.
+- **Enterprise SaaS AI Platform Squad:** Research spikes, review bottlenecks.
 
 ---
 
-## 🛠️ Technology Stack & Architecture
+## Technology Stack & Architecture
 
 - **Frontend Core:** Semantic HTML5, Vanilla JavaScript (ES6+ Modules), CSS3 (Modern Glassmorphism & Custom Design Tokens).
 - **Data Visualization:** [Chart.js 4.x](https://www.chartjs.org/) with responsive high-DPI canvas scaling.
 - **Iconography & Styling:** [Google Fonts](https://fonts.google.com/) (Plus Jakarta Sans & JetBrains Mono), Pure CSS Variables.
 - **Zero-Build Architecture:** Runs natively in any modern evergreen browser without requiring Node.js or compiler toolchains.
-- **Deployment:** GitHub Pages ready with automated GitHub Actions CI/CD pipeline.
+- **Deployment:** GitHub Pages and Vercel ready with automated GitHub Actions CI/CD pipeline.
 
 ---
 
-## 📁 Repository Directory Layout
+## Repository Directory Layout
 
 ```text
 ├── .github/
@@ -115,13 +115,14 @@ The complete project lifecycle documentation is maintained under the [`/docs`](d
 │   ├── docsViewer.js                 # In-app PM documentation reader
 │   └── app.js                        # App bootstrap & event coordination
 ├── index.html                        # Single Page Application
+├── vercel.json                       # Vercel deployment configuration
 ├── LICENSE                           # MIT License
 └── README.md                         # Portfolio README
 ```
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 Because this project uses a clean client-side architecture with zero build dependencies, running it is effortless:
 
@@ -144,24 +145,23 @@ Navigate to `http://localhost:8000`.
 
 ---
 
-## 🌐 Deploying to Your GitHub Pages (1-Click)
+## Deploying to Your GitHub Pages (1-Click)
 
 1. Push this repository to your GitHub account:
    ```bash
    git init
    git add .
-   git commit -m "feat: Initial commit of SprintPulse PM portfolio project"
+   git commit -m "Initial commit of SprintPulse PM portfolio project"
    git branch -M main
    git remote add origin https://github.com/Numesh20/sprintpulse.git
    git push -u origin main
    ```
 2. On GitHub, navigate to **Settings** > **Pages**.
-3. Under **Build and deployment** > **Source**, choose **GitHub Actions** (the included `.github/workflows/deploy.yml` will automatically build and publish your live site!).
-4. Add the live link to your **LinkedIn profile**, **CV**, and GitHub bio.
+3. Under **Build and deployment** > **Source**, choose **Deploy from a branch** (`main` / root).
 
 ---
 
-## 👤 Author & Acknowledgments
+## Author & Acknowledgments
 
 **Undergraduate Student (3rd Year)**  
 *BSc (Hons) in Information Technology*  
@@ -172,6 +172,6 @@ Navigate to `http://localhost:8000`.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

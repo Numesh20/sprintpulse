@@ -136,7 +136,6 @@ Initiation (2w) -> Architecture (2w) -> Core Metrics Engine (2w) -> Ceremony Sui
 
     sidebar.innerHTML = Object.entries(this.docs).map(([key, doc]) => `
       <button class="docs-nav-btn ${this.activeDocKey === key ? 'active' : ''}" onclick="SprintDocsViewer.renderDoc('${key}')">
-        <span>📄</span>
         <span>${doc.title}</span>
       </button>
     `).join('');

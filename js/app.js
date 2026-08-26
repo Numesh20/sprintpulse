@@ -34,7 +34,7 @@ const App = {
         SPRINT_PULSE_DATA.activeSprintId = 'sprint_4'; // Reset to sprint 4 default
         this.updateSprintOptions();
         this.updateDashboard();
-        this.showToast(`Switched squad dataset to "${SPRINT_PULSE_DATA.squads[e.target.value].name}"`, 'info');
+        this.showToast(`Switched squad to ${SPRINT_PULSE_DATA.squads[e.target.value].name}`, 'info');
       });
     }
 
@@ -159,13 +159,15 @@ const App = {
     container.innerHTML = risks.map(r => `
       <div class="risk-alert-card">
         <div class="risk-alert-icon ${r.type}">
-          ${r.type === 'critical' ? '🚨' : r.type === 'warning' ? '⚠️' : '🛡️'}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            ${r.type === 'critical' ? '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>' : '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'}
+          </svg>
         </div>
         <div class="risk-alert-content">
           <div class="risk-alert-title">${r.title}</div>
           <div class="risk-alert-desc">${r.desc}</div>
           <div style="font-size: 0.72rem; color: var(--primary); margin-top: 0.25rem; font-weight: 600;">
-            💡 Action: ${r.recommendation}
+            Action: ${r.recommendation}
           </div>
         </div>
       </div>
@@ -230,7 +232,7 @@ const App = {
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
     toast.innerHTML = `
-      <span>${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : type === 'error' ? '❌' : 'ℹ️'}</span>
+      <span class="kpi-badge badge-neutral" style="font-size: 0.65rem;">${type.toUpperCase()}</span>
       <span>${message}</span>
     `;
 

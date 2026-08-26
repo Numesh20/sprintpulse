@@ -8,8 +8,8 @@ const SprintRetrospective = {
 
   defaultCards: [
     { id: 'rc-1', category: 'went-well', text: 'Clean modular vanilla JS architecture made metric development fast.', author: 'Dilshan S.', votes: 5 },
-    { id: 'rc-2', category: 'went-well', text: 'Daily 15-min PR swarm cleared 8 overdue review bottlenecks!', author: 'Nadeesha F.', votes: 7 },
-    { id: 'rc-3', category: 'to-improve', text: 'High-DPI canvas blurry rendering cost us 1.5 engineering days.', author: 'Tharindu P.', votes: 4 },
+    { id: 'rc-2', category: 'went-well', text: 'Daily 15-min PR swarm cleared 8 overdue review bottlenecks.', author: 'Nadeesha F.', votes: 7 },
+    { id: 'rc-3', category: 'to-improve', text: 'High-DPI canvas blurry rendering required extra debugging time.', author: 'Tharindu P.', votes: 4 },
     { id: 'rc-4', category: 'to-improve', text: 'Mid-sprint scope additions (+3 SP) without prior PM sign-off.', author: 'Kasun J. (Scrum Master)', votes: 6 },
     { id: 'rc-5', category: 'action-items', text: 'Setup Retina canvas DPR scaling utility in design tokens.', author: 'Dilshan S.', votes: 3, assignee: 'Tech Lead' },
     { id: 'rc-6', category: 'action-items', text: 'Enforce strict MoSCoW change request template for any mid-sprint tasks.', author: 'IT PM', votes: 8, assignee: 'Associate PM' }
@@ -82,15 +82,16 @@ const SprintRetrospective = {
           <div class="retro-card-text">${this.escapeHTML(c.text)}</div>
           <div class="retro-card-footer">
             <div class="retro-card-author">
-              <span>👤 ${this.escapeHTML(c.author)}</span>
-              ${c.assignee ? `<span class="kpi-badge badge-neutral">🎯 ${this.escapeHTML(c.assignee)}</span>` : ''}
+              <span>${this.escapeHTML(c.author)}</span>
+              ${c.assignee ? `<span class="kpi-badge badge-neutral">${this.escapeHTML(c.assignee)}</span>` : ''}
             </div>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <button class="btn-vote" onclick="SprintRetrospective.voteCard('${c.id}')" title="Upvote feedback">
-                👍 <span>${c.votes}</span>
+                <span>Vote</span>
+                <span class="mono" style="font-weight: 700;">${c.votes}</span>
               </button>
-              <button class="btn-icon" style="width: 24px; height: 24px; font-size: 0.7rem;" onclick="SprintRetrospective.deleteCard('${c.id}')" title="Delete card">
-                ✕
+              <button class="btn-icon" style="width: 24px; height: 24px; font-size: 0.8rem;" onclick="SprintRetrospective.deleteCard('${c.id}')" title="Delete card">
+                &times;
               </button>
             </div>
           </div>

@@ -4,7 +4,7 @@
  */
 
 const SprintPlanningPoker = {
-  fibonacciCards: [1, 2, 3, 5, 8, 13, 21, '?', '☕'],
+  fibonacciCards: [1, 2, 3, 5, 8, 13, 21, '?', 'Pass'],
   selectedCard: null,
   isRevealed: false,
 
@@ -29,7 +29,7 @@ const SprintPlanningPoker = {
 
   selectCard(val) {
     // If it's a numeric string, convert to Number for mathematical operations
-    this.selectedCard = (val !== '?' && val !== '☕' && !isNaN(val)) ? Number(val) : val;
+    this.selectedCard = (val !== '?' && val !== 'Pass' && !isNaN(val)) ? Number(val) : val;
     this.renderDeck();
     this.renderParticipants();
   },
@@ -81,10 +81,10 @@ const SprintPlanningPoker = {
             </div>
             <div style="display: flex; align-items: center; gap: 0.75rem;">
               <span class="kpi-badge ${isAgreed ? 'badge-positive' : 'badge-warning'}">
-                ${isAgreed ? '🎯 100% Team Consensus' : '⚠️ Minor Estimation Variance'}
+                ${isAgreed ? 'Full Team Consensus' : 'Estimation Variance Detected'}
               </span>
               <button class="btn btn-primary" onclick="SprintPlanningPoker.resetRound()">
-                🔄 Next Story
+                Next Story
               </button>
             </div>
           </div>
@@ -116,11 +116,11 @@ const SprintPlanningPoker = {
           <div class="dev-avatar" style="background: var(--primary); color: #fff;">YOU</div>
           <div>
             <div class="participant-name">You (Associate IT PM)</div>
-            <div class="participant-role">Facilitator / Estimator</div>
+            <div class="participant-role">Facilitator</div>
           </div>
         </div>
         <div class="participant-vote-badge ${!this.isRevealed ? (this.selectedCard ? 'hidden' : '') : ''}">
-          ${this.selectedCard !== null ? (this.isRevealed ? this.selectedCard : '✓') : '⏳'}
+          ${this.selectedCard !== null ? (this.isRevealed ? this.selectedCard : 'Done') : 'Pending'}
         </div>
       </div>
     `;
@@ -136,7 +136,7 @@ const SprintPlanningPoker = {
             </div>
           </div>
           <div class="participant-vote-badge ${!this.isRevealed ? 'hidden' : ''}">
-            ${this.isRevealed ? m.vote : '✓'}
+            ${this.isRevealed ? m.vote : 'Done'}
           </div>
         </div>
       `;

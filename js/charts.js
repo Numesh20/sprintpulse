@@ -95,7 +95,7 @@ const SprintCharts = {
               afterBody: function(tooltipItems) {
                 const dayIndex = tooltipItems[0].dataIndex;
                 const note = sprint.dailyBurndown[dayIndex]?.note;
-                return note ? `\n📌 Note: ${note}` : '';
+                return note ? `\nNote: ${note}` : '';
               }
             }
           }

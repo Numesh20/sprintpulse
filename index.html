@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SprintPulse &bull; Agile Velocity & Team Health Analytics Dashboard</title>
-  <meta name="description" content="An enterprise-grade Agile Project Management & Sprint Analytics Dashboard built for IT Project Managers, Scrum Masters, and engineering leadership.">
+  <title>SprintPulse &bull; Agile Velocity &amp; Team Health Analytics Dashboard</title>
+  <meta name="description" content="An enterprise-grade Agile Project Management &amp; Sprint Analytics Dashboard built for IT Project Managers, Scrum Masters, and engineering leadership.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,35 +26,35 @@
   <header class="app-header">
     <a href="#" class="brand">
       <div class="brand-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
         </svg>
       </div>
       <div class="brand-info">
         <span class="brand-title">SprintPulse</span>
-        <span class="brand-tag">Agile Delivery Analytics</span>
+        <span class="brand-tag">Delivery Analytics</span>
       </div>
     </a>
 
     <!-- Main Navigation Tabs -->
     <nav class="nav-tabs" aria-label="Main Navigation">
       <button class="nav-tab active" data-tab="dashboard" id="tab-btn-dashboard">
-        📊 Dashboard
+        Dashboard
       </button>
       <button class="nav-tab" data-tab="retrospective" id="tab-btn-retrospective">
-        🔄 Retrospectives
+        Retrospectives
       </button>
       <button class="nav-tab" data-tab="poker" id="tab-btn-poker">
-        🃏 Planning Poker
+        Planning Poker
       </button>
       <button class="nav-tab" data-tab="raid" id="tab-btn-raid">
-        🛡️ RAID Log
+        RAID Log
       </button>
       <button class="nav-tab" data-tab="report" id="tab-btn-report">
-        📑 Executive Report
+        Executive Report
       </button>
       <button class="nav-tab" data-tab="docs" id="tab-btn-docs">
-        📚 PM Artifacts
+        PM Artifacts
       </button>
     </nav>
 
@@ -63,9 +63,9 @@
       <div class="dataset-selector-wrap">
         <span class="dataset-selector-label">Squad:</span>
         <select id="squad-select" class="dataset-select" aria-label="Select Agile Squad Dataset">
-          <option value="fintech">💳 Fintech Core Banking</option>
-          <option value="ecommerce">🛒 E-Commerce Mobile</option>
-          <option value="saas">🤖 Enterprise SaaS AI</option>
+          <option value="fintech">Fintech Core Banking</option>
+          <option value="ecommerce">E-Commerce Mobile</option>
+          <option value="saas">Enterprise SaaS AI</option>
         </select>
       </div>
 
@@ -78,7 +78,9 @@
       </div>
 
       <button id="btn-theme-toggle" class="btn btn-icon" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
-        🌓
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
       </button>
     </div>
   </header>
@@ -121,7 +123,9 @@
         <div class="card kpi-card primary">
           <div class="kpi-top">
             <span class="kpi-label">Sprint Health Index</span>
-            <span class="card-icon" style="color: var(--status-on-track);">⚡</span>
+            <span class="card-icon" style="color: var(--status-on-track);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </span>
           </div>
           <div class="health-score-container">
             <div class="health-radial-wrap">
@@ -146,7 +150,9 @@
         <div class="card kpi-card success">
           <div class="kpi-top">
             <span class="kpi-label">Completed Velocity</span>
-            <span class="card-icon" style="color: var(--accent-emerald);">🎯</span>
+            <span class="card-icon" style="color: var(--accent-emerald);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            </span>
           </div>
           <div>
             <div class="kpi-value-row">
@@ -164,7 +170,9 @@
         <div class="card kpi-card info">
           <div class="kpi-top">
             <span class="kpi-label">Predictability Ratio</span>
-            <span class="card-icon" style="color: var(--accent-cyan);">📈</span>
+            <span class="card-icon" style="color: var(--accent-cyan);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </span>
           </div>
           <div>
             <div class="kpi-value-row">
@@ -180,8 +188,10 @@
         <!-- Scope Creep & Volatility Index -->
         <div class="card kpi-card warning">
           <div class="kpi-top">
-            <span class="kpi-label">Scope Creep / Volatility</span>
-            <span class="card-icon" style="color: var(--status-warning);">🌪️</span>
+            <span class="kpi-label">Scope Volatility Index</span>
+            <span class="card-icon" style="color: var(--status-warning);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 6l-9.5 9.5-5-5L1 18"></path><path d="M17 6h6v6"></path></svg>
+            </span>
           </div>
           <div>
             <div class="kpi-value-row">
@@ -197,8 +207,10 @@
         <!-- Code Review Turnaround -->
         <div class="card kpi-card primary">
           <div class="kpi-top">
-            <span class="kpi-label">Avg PR Review Lead Time</span>
-            <span class="card-icon" style="color: var(--primary);">⏱️</span>
+            <span class="kpi-label">Avg Review Turnaround</span>
+            <span class="card-icon" style="color: var(--primary);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </span>
           </div>
           <div>
             <div class="kpi-value-row">
@@ -217,10 +229,10 @@
       <div class="risk-radar-banner" style="margin-bottom: 1.5rem;">
         <div class="radar-header">
           <div class="radar-title">
-            <span>🚨</span>
-            <span>Automated Delivery Risk &amp; Bottleneck Radar</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <span>Delivery Risk &amp; Bottleneck Radar</span>
           </div>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time PM Heuristics Engine</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Heuristic Detection Engine</span>
         </div>
         <div id="risk-radar-items" class="radar-items-grid">
           <!-- Dynamically populated by riskEngine.js -->
@@ -234,9 +246,11 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title-wrap">
-              <span class="card-icon">📉</span>
+              <span class="card-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+              </span>
               <div>
-                <h3 class="card-title">Interactive Sprint Burndown</h3>
+                <h3 class="card-title">Sprint Burndown</h3>
                 <div class="card-subtitle">Ideal Guideline vs. Actual Remaining Story Points (Day-by-Day)</div>
               </div>
             </div>
@@ -250,7 +264,9 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title-wrap">
-              <span class="card-icon">👥</span>
+              <span class="card-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </span>
               <div>
                 <h3 class="card-title">Team Capacity Allocation</h3>
                 <div class="card-subtitle">Assigned SP vs. Capacity Limit</div>
@@ -271,7 +287,9 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title-wrap">
-              <span class="card-icon">📊</span>
+              <span class="card-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </span>
               <div>
                 <h3 class="card-title">Multi-Sprint Velocity Trend</h3>
                 <div class="card-subtitle">Committed vs. Completed SP Across Last 4 Sprints</div>
@@ -287,7 +305,9 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title-wrap">
-              <span class="card-icon">⏳</span>
+              <span class="card-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </span>
               <div>
                 <h3 class="card-title">PR Review Turnaround Distribution</h3>
                 <div class="card-subtitle">Fast (&lt;24h) vs. Normal vs. Delayed (&gt;48h)</div>
@@ -311,11 +331,11 @@
         <div>
           <h2 style="font-size: 1.35rem;">Sprint Retrospective Board</h2>
           <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
-            Continuous Improvement Ceremony &bull; Vote on items &amp; assign action items
+            Continuous Improvement Ceremony &bull; Vote on observations &amp; assign action items
           </div>
         </div>
         <button class="btn btn-primary" onclick="App.openModal('modal-add-retro')">
-          ➕ Add Retro Feedback
+          Add Observation
         </button>
       </div>
 
@@ -325,7 +345,7 @@
         <div class="retro-column col-went-well">
           <div class="retro-col-header">
             <div class="retro-col-title">
-              <span>🌟</span>
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--status-on-track);"></span>
               <span>What Went Well</span>
             </div>
             <span id="retro-count-went-well" class="retro-card-count">0</span>
@@ -337,7 +357,7 @@
         <div class="retro-column col-to-improve">
           <div class="retro-col-header">
             <div class="retro-col-title">
-              <span>🔧</span>
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--status-warning);"></span>
               <span>What Needs Improvement</span>
             </div>
             <span id="retro-count-to-improve" class="retro-card-count">0</span>
@@ -349,7 +369,7 @@
         <div class="retro-column col-action-items">
           <div class="retro-col-header">
             <div class="retro-col-title">
-              <span>🎯</span>
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan);"></span>
               <span>Action Items for Next Sprint</span>
             </div>
             <span id="retro-count-action-items" class="retro-card-count">0</span>
@@ -367,7 +387,7 @@
       <div style="margin-bottom: 1.25rem;">
         <h2 style="font-size: 1.35rem;">Agile Planning Poker Story Estimator</h2>
         <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
-          Fibonacci Story Point Estimation Ceremony with simulated squad voting &amp; consensus analysis
+          Fibonacci Story Point Estimation Ceremony with squad voting &amp; consensus analysis
         </div>
       </div>
 
@@ -379,7 +399,7 @@
           <!-- Story Under Estimation Banner -->
           <div class="poker-story-banner">
             <div>
-              <div class="kpi-badge badge-neutral" style="margin-bottom: 0.4rem;">Grooming Backlog Item</div>
+              <div class="kpi-badge badge-neutral" style="margin-bottom: 0.4rem;">Backlog Item</div>
               <div class="poker-story-title">STORY-205: Implement Multi-Factor Biometric Passkey Flow</div>
               <div class="poker-story-desc">
                 Allow end-users to register WebAuthn hardware keys or biometric FaceID for zero-trust payment authentication.
@@ -397,10 +417,10 @@
             
             <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
               <button class="btn btn-primary" onclick="SprintPlanningPoker.revealVotes()">
-                👁️ Reveal Squad Votes
+                Reveal Squad Votes
               </button>
               <button class="btn btn-outline" onclick="SprintPlanningPoker.resetRound()">
-                🔄 Reset Round
+                Reset Round
               </button>
             </div>
           </div>
@@ -411,7 +431,9 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title-wrap">
-              <span class="card-icon">👥</span>
+              <span class="card-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </span>
               <div>
                 <h3 class="card-title">Squad Votes</h3>
                 <div class="card-subtitle">Real-time participant votes</div>
@@ -444,7 +466,7 @@
             <button class="nav-tab" data-filter="Assumption" onclick="SprintRAIDManager.setFilter('Assumption')">Assumptions</button>
           </div>
           <button class="btn btn-primary" onclick="App.openModal('modal-add-raid')">
-            ➕ Log RAID Item
+            Log RAID Item
           </button>
         </div>
       </div>
@@ -511,20 +533,20 @@
   <div id="modal-add-retro" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 style="font-size: 1.1rem;">Add Retrospective Feedback</h3>
-        <button class="btn-icon" onclick="App.closeModal('modal-add-retro')">✕</button>
+        <h3 style="font-size: 1.1rem;">Add Retrospective Observation</h3>
+        <button class="btn-icon" onclick="App.closeModal('modal-add-retro')">&times;</button>
       </div>
       <form id="form-add-retro" onsubmit="event.preventDefault(); handleAddRetroSubmit();">
         <div class="form-group">
           <label class="form-label">Category</label>
           <select id="retro-input-category" class="form-select">
-            <option value="went-well">🌟 What Went Well</option>
-            <option value="to-improve">🔧 What Needs Improvement</option>
-            <option value="action-items">🎯 Action Item for Next Sprint</option>
+            <option value="went-well">What Went Well</option>
+            <option value="to-improve">What Needs Improvement</option>
+            <option value="action-items">Action Item for Next Sprint</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">Feedback / Observation</label>
+          <label class="form-label">Observation / Feedback</label>
           <textarea id="retro-input-text" class="form-textarea" rows="3" placeholder="Describe the team observation or action item..." required></textarea>
         </div>
         <div class="form-group">
@@ -537,7 +559,7 @@
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
           <button type="button" class="btn btn-outline" onclick="App.closeModal('modal-add-retro')">Cancel</button>
-          <button type="submit" class="btn btn-primary">Add to Board</button>
+          <button type="submit" class="btn btn-primary">Add Observation</button>
         </div>
       </form>
     </div>
@@ -548,16 +570,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 style="font-size: 1.1rem;">Log RAID Register Item</h3>
-        <button class="btn-icon" onclick="App.closeModal('modal-add-raid')">✕</button>
+        <button class="btn-icon" onclick="App.closeModal('modal-add-raid')">&times;</button>
       </div>
       <form id="form-add-raid" onsubmit="event.preventDefault(); handleAddRaidSubmit();">
         <div class="form-group">
           <label class="form-label">RAID Category</label>
           <select id="raid-input-type" class="form-select">
-            <option value="Risk">⚠️ Risk (Potential Threat)</option>
-            <option value="Issue">🚨 Issue (Active Blocker)</option>
-            <option value="Dependency">🔗 Dependency (External Block)</option>
-            <option value="Assumption">📋 Assumption</option>
+            <option value="Risk">Risk (Potential Threat)</option>
+            <option value="Issue">Issue (Active Blocker)</option>
+            <option value="Dependency">Dependency (External Block)</option>
+            <option value="Assumption">Assumption</option>
           </select>
         </div>
         <div class="form-group">
@@ -596,7 +618,7 @@
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
           <button type="button" class="btn btn-outline" onclick="App.closeModal('modal-add-raid')">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save to Register</button>
+          <button type="submit" class="btn btn-primary">Save Item</button>
         </div>
       </form>
     </div>
@@ -616,8 +638,8 @@
       </div>
     </div>
     <div class="footer-links">
-      <span class="kpi-badge badge-positive">Ready for GitHub Pages</span>
-      <a href="https://github.com" target="_blank" class="footer-link">GitHub Repository</a>
+      <span class="kpi-badge badge-positive">Production Build</span>
+      <a href="https://github.com/Numesh20/sprintpulse" target="_blank" class="footer-link">GitHub Repository</a>
       <a href="docs/01_PROJECT_CHARTER.md" class="footer-link">Docs Index</a>
     </div>
   </footer>
@@ -645,7 +667,7 @@
       SprintRetrospective.addCard(category, text, author, assignee);
       App.closeModal('modal-add-retro');
       document.getElementById('form-add-retro').reset();
-      App.showToast('Retrospective card added successfully!', 'success');
+      App.showToast('Observation registered successfully.', 'success');
     }
 
     function handleAddRaidSubmit() {
@@ -659,7 +681,7 @@
       SprintRAIDManager.addItem({ type, title, likelihood, impact, owner, mitigation });
       App.closeModal('modal-add-raid');
       document.getElementById('form-add-raid').reset();
-      App.showToast('RAID item registered successfully!', 'success');
+      App.showToast('RAID item recorded in register.', 'success');
     }
   </script>
 
