@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SprintPulse &bull; Agile Velocity & Team Health Analytics Dashboard</title>
+  <meta name="description" content="An enterprise-grade Agile Project Management & Sprint Analytics Dashboard built for IT Project Managers, Scrum Masters, and engineering leadership.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       1. Top Navigation Bar & Brand Header
+       =================================================================== -->
+  <header class="app-header">
+    <a href="#" class="brand">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+      </div>
+      <div class="brand-info">
+        <span class="brand-title">SprintPulse</span>
+        <span class="brand-tag">Agile Delivery Analytics</span>
+      </div>
+    </a>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Main Navigation">
+      <button class="nav-tab active" data-tab="dashboard" id="tab-btn-dashboard">
+        📊 Dashboard
+      </button>
+      <button class="nav-tab" data-tab="retrospective" id="tab-btn-retrospective">
+        🔄 Retrospectives
+      </button>
+      <button class="nav-tab" data-tab="poker" id="tab-btn-poker">
+        🃏 Planning Poker
+      </button>
+      <button class="nav-tab" data-tab="raid" id="tab-btn-raid">
+        🛡️ RAID Log
+      </button>
+      <button class="nav-tab" data-tab="report" id="tab-btn-report">
+        📑 Executive Report
+      </button>
+      <button class="nav-tab" data-tab="docs" id="tab-btn-docs">
+        📚 PM Artifacts
+      </button>
+    </nav>
+
+    <!-- Header Dataset & Theme Controls -->
+    <div class="header-controls">
+      <div class="dataset-selector-wrap">
+        <span class="dataset-selector-label">Squad:</span>
+        <select id="squad-select" class="dataset-select" aria-label="Select Agile Squad Dataset">
+          <option value="fintech">💳 Fintech Core Banking</option>
+          <option value="ecommerce">🛒 E-Commerce Mobile</option>
+          <option value="saas">🤖 Enterprise SaaS AI</option>
+        </select>
+      </div>
+
+      <div class="dataset-selector-wrap">
+        <span class="dataset-selector-label">Sprint:</span>
+        <select id="sprint-select" class="sprint-select" aria-label="Select Sprint">
+          <option value="sprint_4">Sprint 04 (Current)</option>
+          <option value="sprint_3">Sprint 03 (Past)</option>
+        </select>
+      </div>
+
+      <button id="btn-theme-toggle" class="btn btn-icon" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
+        🌓
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       2. Main Application Content
+       =================================================================== -->
+  <main class="app-main">
+
+    <!-- ===============================================================
+         TAB 1: Sprint Analytics Dashboard
+         =============================================================== -->
+    <section id="tab-dashboard" class="tab-content active">
+      
+      <!-- Active Sprint Banner -->
+      <div class="card" style="margin-bottom: 1.25rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.06)); border-color: var(--border-active);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="kpi-badge badge-positive">Active Sprint</span>
+              <h2 id="banner-sprint-title" style="font-size: 1.35rem;">Sprint 04: Real-time QR Settlement</h2>
+            </div>
+            <div id="banner-sprint-goal" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">
+              "Deliver ISO-20022 compliant QR payment processing gateway with &lt;200ms latency."
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Sprint Cadence</div>
+            <div id="banner-sprint-dates" class="mono" style="font-size: 0.85rem; font-weight: 600; color: var(--accent-cyan);">
+              2026-08-10 to 2026-08-24 (Day 8 of 10)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Metrics Grid -->
+      <div class="kpi-grid" style="margin-bottom: 1.25rem;">
+        
+        <!-- Sprint Health Index Widget -->
+        <div class="card kpi-card primary">
+          <div class="kpi-top">
+            <span class="kpi-label">Sprint Health Index</span>
+            <span class="card-icon" style="color: var(--status-on-track);">⚡</span>
+          </div>
+          <div class="health-score-container">
+            <div class="health-radial-wrap">
+              <svg class="health-radial-svg" viewBox="0 0 100 100">
+                <circle class="health-radial-bg" cx="50" cy="50" r="40"></circle>
+                <circle id="health-radial-circle" class="health-radial-progress" cx="50" cy="50" r="40"></circle>
+              </svg>
+              <div id="kpi-health-score" class="health-score-text">88</div>
+            </div>
+            <div>
+              <div id="kpi-health-status" class="kpi-badge badge-positive" style="font-size: 0.8rem; margin-bottom: 0.35rem;">
+                Healthy Trajectory
+              </div>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">
+                Weighted burndown adherence &amp; review cycle speed
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Velocity (Committed vs Done) -->
+        <div class="card kpi-card success">
+          <div class="kpi-top">
+            <span class="kpi-label">Completed Velocity</span>
+            <span class="card-icon" style="color: var(--accent-emerald);">🎯</span>
+          </div>
+          <div>
+            <div class="kpi-value-row">
+              <span id="kpi-velocity-val" class="kpi-value">36 / 44</span>
+              <span class="kpi-unit">SP</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="kpi-badge badge-positive">81.8% Progress</span>
+              <span style="color: var(--text-muted);">Target: 44 SP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Predictability Ratio -->
+        <div class="card kpi-card info">
+          <div class="kpi-top">
+            <span class="kpi-label">Predictability Ratio</span>
+            <span class="card-icon" style="color: var(--accent-cyan);">📈</span>
+          </div>
+          <div>
+            <div class="kpi-value-row">
+              <span id="kpi-predictability-val" class="kpi-value">91%</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="kpi-badge badge-positive">&ge; 85% Target Met</span>
+              <span style="color: var(--text-muted);">3-Sprint Avg: 92%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scope Creep & Volatility Index -->
+        <div class="card kpi-card warning">
+          <div class="kpi-top">
+            <span class="kpi-label">Scope Creep / Volatility</span>
+            <span class="card-icon" style="color: var(--status-warning);">🌪️</span>
+          </div>
+          <div>
+            <div class="kpi-value-row">
+              <span id="kpi-scope-creep-val" class="kpi-value">+6.8%</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="kpi-badge badge-warning">3 SP Added Mid-Sprint</span>
+              <span style="color: var(--text-muted);">&lt; 15% Threshold</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Review Turnaround -->
+        <div class="card kpi-card primary">
+          <div class="kpi-top">
+            <span class="kpi-label">Avg PR Review Lead Time</span>
+            <span class="card-icon" style="color: var(--primary);">⏱️</span>
+          </div>
+          <div>
+            <div class="kpi-value-row">
+              <span id="kpi-cycle-time-val" class="kpi-value">18h</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="kpi-badge badge-positive">Within 24h SLA</span>
+              <span style="color: var(--text-muted);">1 Overdue &gt;48h</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Heuristic Risk & Bottleneck Radar -->
+      <div class="risk-radar-banner" style="margin-bottom: 1.5rem;">
+        <div class="radar-header">
+          <div class="radar-title">
+            <span>🚨</span>
+            <span>Automated Delivery Risk &amp; Bottleneck Radar</span>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time PM Heuristics Engine</span>
+        </div>
+        <div id="risk-radar-items" class="radar-items-grid">
+          <!-- Dynamically populated by riskEngine.js -->
+        </div>
+      </div>
+
+      <!-- Main Charts Layout (Burndown + Team Workload) -->
+      <div class="charts-grid-main" style="margin-bottom: 1.5rem;">
+        
+        <!-- Burndown Chart Canvas Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <span class="card-icon">📉</span>
+              <div>
+                <h3 class="card-title">Interactive Sprint Burndown</h3>
+                <div class="card-subtitle">Ideal Guideline vs. Actual Remaining Story Points (Day-by-Day)</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-burndown-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Team Workload & Capacity Heatmap -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <span class="card-icon">👥</span>
+              <div>
+                <h3 class="card-title">Team Capacity Allocation</h3>
+                <div class="card-subtitle">Assigned SP vs. Capacity Limit</div>
+              </div>
+            </div>
+          </div>
+          <div id="workload-list-container" class="workload-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Secondary Charts Layout (Multi-Sprint Velocity + Review Cycle Time) -->
+      <div class="charts-grid-secondary">
+        
+        <!-- Multi-Sprint Velocity Trend -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <span class="card-icon">📊</span>
+              <div>
+                <h3 class="card-title">Multi-Sprint Velocity Trend</h3>
+                <div class="card-subtitle">Committed vs. Completed SP Across Last 4 Sprints</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-velocity-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Code Review Turnaround Distribution -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <span class="card-icon">⏳</span>
+              <div>
+                <h3 class="card-title">PR Review Turnaround Distribution</h3>
+                <div class="card-subtitle">Fast (&lt;24h) vs. Normal vs. Delayed (&gt;48h)</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-cycle-canvas"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===============================================================
+         TAB 2: Interactive Sprint Retrospective Board
+         =============================================================== -->
+    <section id="tab-retrospective" class="tab-content">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+        <div>
+          <h2 style="font-size: 1.35rem;">Sprint Retrospective Board</h2>
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Continuous Improvement Ceremony &bull; Vote on items &amp; assign action items
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="App.openModal('modal-add-retro')">
+          ➕ Add Retro Feedback
+        </button>
+      </div>
+
+      <div class="retro-board">
+        
+        <!-- Column 1: Went Well -->
+        <div class="retro-column col-went-well">
+          <div class="retro-col-header">
+            <div class="retro-col-title">
+              <span>🌟</span>
+              <span>What Went Well</span>
+            </div>
+            <span id="retro-count-went-well" class="retro-card-count">0</span>
+          </div>
+          <div id="retro-list-went-well" class="retro-cards-list"></div>
+        </div>
+
+        <!-- Column 2: To Improve -->
+        <div class="retro-column col-to-improve">
+          <div class="retro-col-header">
+            <div class="retro-col-title">
+              <span>🔧</span>
+              <span>What Needs Improvement</span>
+            </div>
+            <span id="retro-count-to-improve" class="retro-card-count">0</span>
+          </div>
+          <div id="retro-list-to-improve" class="retro-cards-list"></div>
+        </div>
+
+        <!-- Column 3: Action Items -->
+        <div class="retro-column col-action-items">
+          <div class="retro-col-header">
+            <div class="retro-col-title">
+              <span>🎯</span>
+              <span>Action Items for Next Sprint</span>
+            </div>
+            <span id="retro-count-action-items" class="retro-card-count">0</span>
+          </div>
+          <div id="retro-list-action-items" class="retro-cards-list"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 3: Interactive Planning Poker Estimator
+         =============================================================== -->
+    <section id="tab-poker" class="tab-content">
+      <div style="margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.35rem;">Agile Planning Poker Story Estimator</h2>
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Fibonacci Story Point Estimation Ceremony with simulated squad voting &amp; consensus analysis
+        </div>
+      </div>
+
+      <div class="poker-container">
+        
+        <!-- Poker Table & Cards Area -->
+        <div class="poker-table-area">
+          
+          <!-- Story Under Estimation Banner -->
+          <div class="poker-story-banner">
+            <div>
+              <div class="kpi-badge badge-neutral" style="margin-bottom: 0.4rem;">Grooming Backlog Item</div>
+              <div class="poker-story-title">STORY-205: Implement Multi-Factor Biometric Passkey Flow</div>
+              <div class="poker-story-desc">
+                Allow end-users to register WebAuthn hardware keys or biometric FaceID for zero-trust payment authentication.
+              </div>
+            </div>
+          </div>
+
+          <!-- Consensus Banner (Hidden until reveal) -->
+          <div id="poker-consensus-results" style="display: none;"></div>
+
+          <!-- Fibonacci Deck -->
+          <div class="card" style="text-align: center;">
+            <h3 style="font-size: 0.95rem; margin-bottom: 0.5rem;">Select Your Story Point Estimate:</h3>
+            <div id="poker-deck-container" class="poker-deck"></div>
+            
+            <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
+              <button class="btn btn-primary" onclick="SprintPlanningPoker.revealVotes()">
+                👁️ Reveal Squad Votes
+              </button>
+              <button class="btn btn-outline" onclick="SprintPlanningPoker.resetRound()">
+                🔄 Reset Round
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Participants Live Voting Status -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-wrap">
+              <span class="card-icon">👥</span>
+              <div>
+                <h3 class="card-title">Squad Votes</h3>
+                <div class="card-subtitle">Real-time participant votes</div>
+              </div>
+            </div>
+          </div>
+          <div id="poker-participants-container" class="poker-participants-list"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 4: RAID Log Governance Manager
+         =============================================================== -->
+    <section id="tab-raid" class="tab-content">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+        <div>
+          <h2 style="font-size: 1.35rem;">RAID Governance Register</h2>
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Enterprise Risks, Assumptions, Issues, and Dependencies tracking with 5x5 qualitative matrix
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div id="raid-filter-tabs" class="nav-tabs" style="padding: 0.15rem;">
+            <button class="nav-tab active" data-filter="ALL" onclick="SprintRAIDManager.setFilter('ALL')">All</button>
+            <button class="nav-tab" data-filter="Risk" onclick="SprintRAIDManager.setFilter('Risk')">Risks</button>
+            <button class="nav-tab" data-filter="Issue" onclick="SprintRAIDManager.setFilter('Issue')">Issues</button>
+            <button class="nav-tab" data-filter="Dependency" onclick="SprintRAIDManager.setFilter('Dependency')">Dependencies</button>
+            <button class="nav-tab" data-filter="Assumption" onclick="SprintRAIDManager.setFilter('Assumption')">Assumptions</button>
+          </div>
+          <button class="btn btn-primary" onclick="App.openModal('modal-add-raid')">
+            ➕ Log RAID Item
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="raid-table-wrap">
+          <table class="raid-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Description &amp; Mitigation</th>
+                <th>Severity (L&times;I)</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="raid-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 5: Executive Stakeholder Report
+         =============================================================== -->
+    <section id="tab-report" class="tab-content">
+      <div id="executive-report-content">
+        <!-- Dynamically rendered by exportReport.js -->
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 6: PM Artifacts & Documentation Explorer
+         =============================================================== -->
+    <section id="tab-docs" class="tab-content">
+      <div style="margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.35rem;">IT Project Management Documentation Suite</h2>
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Complete PMBOK &amp; Agile delivery documentation formulated for repository review
+        </div>
+      </div>
+
+      <div class="docs-layout">
+        <div class="docs-sidebar" id="docs-sidebar-nav">
+          <!-- Dynamically populated -->
+        </div>
+        <div class="docs-markdown-body" id="docs-markdown-content">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       3. Modal Windows (Add Retro Card / Add RAID Item)
+       =================================================================== -->
+  
+  <!-- Add Retro Modal -->
+  <div id="modal-add-retro" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem;">Add Retrospective Feedback</h3>
+        <button class="btn-icon" onclick="App.closeModal('modal-add-retro')">✕</button>
+      </div>
+      <form id="form-add-retro" onsubmit="event.preventDefault(); handleAddRetroSubmit();">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select id="retro-input-category" class="form-select">
+            <option value="went-well">🌟 What Went Well</option>
+            <option value="to-improve">🔧 What Needs Improvement</option>
+            <option value="action-items">🎯 Action Item for Next Sprint</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Feedback / Observation</label>
+          <textarea id="retro-input-text" class="form-textarea" rows="3" placeholder="Describe the team observation or action item..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Name / Role</label>
+          <input type="text" id="retro-input-author" class="form-input" placeholder="e.g., Sarah (Associate PM)" required>
+        </div>
+        <div class="form-group" id="retro-assignee-group">
+          <label class="form-label">Assignee (Optional for action items)</label>
+          <input type="text" id="retro-input-assignee" class="form-input" placeholder="e.g., Tech Lead / DevOps">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('modal-add-retro')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add to Board</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add RAID Item Modal -->
+  <div id="modal-add-raid" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem;">Log RAID Register Item</h3>
+        <button class="btn-icon" onclick="App.closeModal('modal-add-raid')">✕</button>
+      </div>
+      <form id="form-add-raid" onsubmit="event.preventDefault(); handleAddRaidSubmit();">
+        <div class="form-group">
+          <label class="form-label">RAID Category</label>
+          <select id="raid-input-type" class="form-select">
+            <option value="Risk">⚠️ Risk (Potential Threat)</option>
+            <option value="Issue">🚨 Issue (Active Blocker)</option>
+            <option value="Dependency">🔗 Dependency (External Block)</option>
+            <option value="Assumption">📋 Assumption</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Title / Description</label>
+          <input type="text" id="raid-input-title" class="form-input" placeholder="Brief summary of the risk or issue" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Likelihood (1: Rare - 5: Almost Certain)</label>
+            <select id="raid-input-likelihood" class="form-select">
+              <option value="1">1 - Rare</option>
+              <option value="2">2 - Unlikely</option>
+              <option value="3" selected>3 - Possible</option>
+              <option value="4">4 - Likely</option>
+              <option value="5">5 - Almost Certain</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Impact (1: Minor - 5: Critical)</label>
+            <select id="raid-input-impact" class="form-select">
+              <option value="1">1 - Insignificant</option>
+              <option value="2">2 - Minor</option>
+              <option value="3">3 - Moderate</option>
+              <option value="4" selected>4 - Major</option>
+              <option value="5">5 - Critical</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mitigation / Remediation Strategy</label>
+          <textarea id="raid-input-mitigation" class="form-textarea" rows="2" placeholder="Actionable steps to prevent or mitigate this risk..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Owner / Assignee</label>
+          <input type="text" id="raid-input-owner" class="form-input" placeholder="e.g., Associate IT PM / Tech Lead" required>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('modal-add-raid')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ===================================================================
+       4. Footer & University Attribution
+       =================================================================== -->
+  <footer class="app-footer">
+    <div>
+      <strong>SprintPulse &bull; Agile Velocity &amp; Team Health Analytics Platform</strong>
+      <div style="font-size: 0.75rem; margin-top: 0.2rem;">
+        Formulated by an IT Undergrad at <strong>Sabaragamuwa University of Sri Lanka (SUSL)</strong> for Associate IT Project Manager (APM) Internship Portfolio.
+      </div>
+    </div>
+    <div class="footer-links">
+      <span class="kpi-badge badge-positive">Ready for GitHub Pages</span>
+      <a href="https://github.com" target="_blank" class="footer-link">GitHub Repository</a>
+      <a href="docs/01_PROJECT_CHARTER.md" class="footer-link">Docs Index</a>
+    </div>
+  </footer>
+
+  <!-- Script Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/metrics.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/riskEngine.js"></script>
+  <script src="js/retrospective.js"></script>
+  <script src="js/planningPoker.js"></script>
+  <script src="js/raidManager.js"></script>
+  <script src="js/exportReport.js"></script>
+  <script src="js/docsViewer.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Form submission handlers
+    function handleAddRetroSubmit() {
+      const category = document.getElementById('retro-input-category').value;
+      const text = document.getElementById('retro-input-text').value;
+      const author = document.getElementById('retro-input-author').value;
+      const assignee = document.getElementById('retro-input-assignee').value;
+
+      SprintRetrospective.addCard(category, text, author, assignee);
+      App.closeModal('modal-add-retro');
+      document.getElementById('form-add-retro').reset();
+      App.showToast('Retrospective card added successfully!', 'success');
+    }
+
+    function handleAddRaidSubmit() {
+      const type = document.getElementById('raid-input-type').value;
+      const title = document.getElementById('raid-input-title').value;
+      const likelihood = document.getElementById('raid-input-likelihood').value;
+      const impact = document.getElementById('raid-input-impact').value;
+      const mitigation = document.getElementById('raid-input-mitigation').value;
+      const owner = document.getElementById('raid-input-owner').value;
+
+      SprintRAIDManager.addItem({ type, title, likelihood, impact, owner, mitigation });
+      App.closeModal('modal-add-raid');
+      document.getElementById('form-add-raid').reset();
+      App.showToast('RAID item registered successfully!', 'success');
+    }
+  </script>
+
+</body>
+</html>

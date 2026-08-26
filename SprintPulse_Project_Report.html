@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SprintPulse - Complete IT Project Management & Technical Portfolio Report</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      line-height: 1.55;
+      font-size: 10pt;
+      background: #ffffff;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 1rem;
+      border-bottom: 2px solid #e2e8f0;
+      page-break-after: always;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #4338ca;
+      font-weight: 700;
+      font-size: 8pt;
+      padding: 4px 12px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-title {
+      font-size: 26pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #1e1b4b;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cover-subtitle {
+      font-size: 12pt;
+      color: #475569;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta-label {
+      font-size: 7.5pt;
+      color: #64748b;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-val {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Headings */
+    h1 {
+      font-size: 16pt;
+      font-weight: 800;
+      color: #1e1b4b;
+      margin: 1.75rem 0 0.75rem 0;
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #312e81;
+      margin: 1.25rem 0 0.5rem 0;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #4338ca;
+      margin: 1rem 0 0.4rem 0;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 8.5pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      font-size: 9pt;
+    }
+
+    .callout.info {
+      background: #eff6ff;
+      border-left-color: #3b82f6;
+    }
+
+    .callout.warning {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    /* Code & Formulas */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 8pt;
+      color: #4338ca;
+    }
+
+    .formula-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin: 0.75rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      color: #1e293b;
+    }
+
+    .toc {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dotted #cbd5e1;
+      font-size: 9pt;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================
+       COVER PAGE
+       =================================================================== -->
+  <div class="cover-page">
+    <div>
+      <span class="cover-badge">Associate IT Project Manager (APM) Portfolio</span>
+      <h1 class="cover-title">SprintPulse: Agile Velocity &amp; Team Health Analytics Platform</h1>
+      <div class="cover-subtitle">
+        A Comprehensive Technical &amp; Agile Project Management Delivery Showcase for IT Internship Recruitment
+      </div>
+
+      <div class="cover-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Author / Candidate</span>
+          <span class="meta-val">3rd Year Undergraduate (BSc Hons in IT)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">University / Institution</span>
+          <span class="meta-val">Sabaragamuwa University of Sri Lanka (SUSL)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Target Career Role</span>
+          <span class="meta-val">Associate IT Project Manager / Agile Scrum Master</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Frameworks &amp; Standards</span>
+          <span class="meta-val">Agile Scrum, Kanban, PMI / PMBOK 7th Ed, ITIL</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="callout info">
+        <div class="callout-title">Portfolio Architecture Overview</div>
+        SprintPulse features a dual-core deliverable: (1) A complete, interactive client-side web application for real-time sprint analytics and ceremonies, and (2) An enterprise-grade IT PM documentation repository (Project Charter, PRD, C4 Architecture, RAID Log, WBS Roadmap, and Sprint Retrospectives).
+      </div>
+      <div style="font-size: 8pt; color: #64748b; margin-top: 1rem; text-align: center;">
+        Generated on August 2026 &bull; Sabaragamuwa University of Sri Lanka &bull; MIT Licensed
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       TABLE OF CONTENTS
+       =================================================================== -->
+  <h1>Table of Contents</h1>
+  <div class="toc">
+    <div class="toc-item"><span>1. Executive Summary &amp; Problem Statement</span><span>Page 2</span></div>
+    <div class="toc-item"><span>2. Agile Metrics, Mathematical Formulations &amp; KPI Models</span><span>Page 3</span></div>
+    <div class="toc-item"><span>3. System Architecture &amp; Technical Implementation</span><span>Page 5</span></div>
+    <div class="toc-item"><span>4. IT Project Management Documentation Suite (Summary)</span><span>Page 7</span></div>
+    <div class="toc-item"><span>5. Interactive Ceremony Modules (Retro, Poker, RAID)</span><span>Page 9</span></div>
+    <div class="toc-item"><span>6. GitHub Deployment &amp; CI/CD Pipeline</span><span>Page 11</span></div>
+    <div class="toc-item"><span>7. APM &amp; Scrum Master Interview Preparation Guide</span><span>Page 12</span></div>
+  </div>
+
+  <!-- ===================================================================
+       SECTION 1: EXECUTIVE SUMMARY
+       =================================================================== -->
+  <h1>1. Executive Summary &amp; Problem Statement</h1>
+  
+  <h2>1.1 The Industry Problem</h2>
+  <p>
+    In fast-paced software engineering environments (e.g., IFS, Sysco LABS, Virtusa, WSO2, 99x), engineering teams work in 2-week agile sprints. However, delivery unpredictability and silent scope creep frequently derail milestone commitments.
+  </p>
+  <p>
+    Traditional tools like Jira and Azure DevOps store vast amounts of raw ticketing data, but require Project Managers to spend 3 to 5 hours per week manually extracting metrics into slide decks for executive reporting. Furthermore, these tools lack automated heuristics to detect delivery risks (e.g., Pull Requests stagnating in code review or developer overallocation) before they cause sprint failure.
+  </p>
+
+  <h2>1.2 The SprintPulse Solution</h2>
+  <p>
+    <strong>SprintPulse</strong> is a unified Agile Project Management and Sprint Velocity Analytics platform that:
+  </p>
+  <ul>
+    <li><strong>Computes a Single Sprint Health Index (0–100):</strong> Evaluates burndown adherence, velocity predictability, mid-sprint scope volatility, and code review lead times in real time.</li>
+    <li><strong>Automated Risk &amp; Bottleneck Radar:</strong> Uses rule-based heuristics to flag developer overallocation, review bottlenecks (&gt;48h), and unestimated backlog tasks.</li>
+    <li><strong>Integrated Ceremony Toolkit:</strong> Provides digital tooling for Fibonacci Planning Poker, Sprint Retrospectives with upvoting, and RAID log tracking.</li>
+    <li><strong>One-Click Stakeholder Reporting:</strong> Generates formatted executive briefing documents in Markdown and PDF formats.</li>
+  </ul>
+
+  <!-- ===================================================================
+       SECTION 2: METRICS & MATHEMATICAL FORMULATIONS
+       =================================================================== -->
+  <div class="page-break"></div>
+  <h1>2. Agile Metrics, Mathematical Formulations &amp; KPI Models</h1>
+  <p>
+    SprintPulse implements established Agile and Scrum measurement standards. These formulas are implemented in <code>js/metrics.js</code> and <code>js/riskEngine.js</code>.
+  </p>
+
+  <h2>2.1 Velocity &amp; Predictability Ratio</h2>
+  <p>
+    <strong>Committed Velocity ($V_{\text{committed}}$):</strong> Total Story Points agreed upon during Sprint Planning.  
+    <strong>Completed Velocity ($V_{\text{completed}}$):</strong> Story Points meeting the team's Definition of Done (DoD).
+  </p>
+  <div class="formula-box">
+    Sprint Predictability Ratio (%) = min(100, (Completed SP / Committed SP) * 100)
+  </div>
+  <p>
+    <em>Industry Benchmark:</em> A predictability ratio between <strong>85% and 100%</strong> indicates mature sprint estimation and stable capacity planning.
+  </p>
+
+  <h2>2.2 Scope Creep &amp; Volatility Index (%)</h2>
+  <p>
+    Measures the volume of unplanned user stories injected into the sprint backlog after sprint kickoff:
+  </p>
+  <div class="formula-box">
+    Scope Volatility Index (%) = (Story Points Added Mid-Sprint / Initial Committed SP) * 100
+  </div>
+  <p>
+    <em>Thresholds:</em> 
+    <strong>&lt; 5%:</strong> Low (Healthy) &bull; 
+    <strong>5%–14%:</strong> Moderate (Warning) &bull; 
+    <strong>&ge; 15%:</strong> High (Critical Escalation Required).
+  </p>
+
+  <h2>2.3 Daily Burndown Trajectory &amp; Variance</h2>
+  <p>
+    The ideal linear burndown trajectory is computed as:
+  </p>
+  <div class="formula-box">
+    Ideal Remaining (Day d) = Committed SP - ((Committed SP / Total Days) * d)
+  </div>
+  <p>
+    If the actual remaining story points exceed the ideal baseline by <strong>&gt; 18%</strong> past Day 5 of the sprint, the system flags a burndown trajectory slippage risk.
+  </p>
+
+  <h2>2.4 Composite Sprint Health Score (0–100)</h2>
+  <p>
+    SprintPulse computes an overall health index starting at 100 points and applying weighted penalties:
+  </p>
+  <ul>
+    <li><strong>Burndown Delay Penalty:</strong> Up to -25 points based on daily schedule variance.</li>
+    <li><strong>Scope Creep Penalty:</strong> Up to -20 points based on mid-sprint backlog additions.</li>
+    <li><strong>Overallocation Penalty:</strong> -8 points per team member assigned points exceeding 100% capacity.</li>
+    <li><strong>Review Bottleneck Penalty:</strong> -10 points per Pull Request remaining in review for &gt;48 hours.</li>
+  </ul>
+
+  <!-- ===================================================================
+       SECTION 3: SYSTEM ARCHITECTURE & CODEBASE DESIGN
+       =================================================================== -->
+  <div class="page-break"></div>
+  <h1>3. System Architecture &amp; Technical Implementation</h1>
+
+  <h2>3.1 Architecture Overview</h2>
+  <p>
+    SprintPulse uses a <strong>zero-dependency client-side Single Page Application (SPA)</strong> architecture. It requires no backend server, database, or Node.js compiler, allowing immediate deployment to GitHub Pages for instant evaluation by recruiters.
+  </p>
+
+  <h2>3.2 File-by-File Breakdown</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">File / Path</th>
+        <th style="width: 25%;">Technology</th>
+        <th>Functional Role &amp; Architecture Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>index.html</code></td>
+        <td>HTML5 Semantic</td>
+        <td>Single Page Application shell housing the 6 main tabs (Dashboard, Retrospectives, Planning Poker, RAID Log, Executive Report, PM Artifacts).</td>
+      </tr>
+      <tr>
+        <td><code>css/style.css</code></td>
+        <td>CSS3 Variables</td>
+        <td>Core design tokens, dark/light theme definitions, typography (Plus Jakarta Sans), layout grids, and animations.</td>
+      </tr>
+      <tr>
+        <td><code>css/components.css</code></td>
+        <td>CSS3 Glassmorphism</td>
+        <td>Styles for KPI cards, Chart.js wrappers, 3-column Retrospective boards, 3D flip poker cards, and modal dialogs.</td>
+      </tr>
+      <tr>
+        <td><code>js/data.js</code></td>
+        <td>ES6 Data Store</td>
+        <td>Encapsulates 3 realistic squad datasets: Fintech Core Banking, E-Commerce Mobile, and Enterprise SaaS AI Platform.</td>
+      </tr>
+      <tr>
+        <td><code>js/metrics.js</code></td>
+        <td>Pure JavaScript</td>
+        <td>Mathematical calculation engine for Velocity, Predictability, Burndown, Scope Volatility, and the Sprint Health Index.</td>
+      </tr>
+      <tr>
+        <td><code>js/charts.js</code></td>
+        <td>Chart.js 4.x</td>
+        <td>Canvas rendering engine for Burndown lines, multi-sprint Velocity bars, and PR review cycle time distribution.</td>
+      </tr>
+      <tr>
+        <td><code>js/riskEngine.js</code></td>
+        <td>Rule-Based Engine</td>
+        <td>Heuristic scanner identifying developer overload, review bottlenecks, and burndown delays with PM recommendations.</td>
+      </tr>
+      <tr>
+        <td><code>js/retrospective.js</code></td>
+        <td>DOM &amp; LocalStorage</td>
+        <td>Manages the interactive Retrospective board with card upvoting, adding feedback, and local browser persistence.</td>
+      </tr>
+      <tr>
+        <td><code>js/planningPoker.js</code></td>
+        <td>Interactive State</td>
+        <td>Fibonacci card estimation tool (1, 2, 3, 5, 8, 13, 21), live simulated squad voting, and consensus computation.</td>
+      </tr>
+      <tr>
+        <td><code>js/raidManager.js</code></td>
+        <td>CRUD &amp; LocalStorage</td>
+        <td>Interactive RAID Log table with 5x5 Likelihood x Impact scoring, category filtering, and modal creation forms.</td>
+      </tr>
+      <tr>
+        <td><code>js/exportReport.js</code></td>
+        <td>Markdown &amp; Print API</td>
+        <td>Generates executive delivery briefings formatted for copy-pasting into Slack/Teams or printing to PDF.</td>
+      </tr>
+      <tr>
+        <td><code>js/docsViewer.js</code></td>
+        <td>Markdown Parser</td>
+        <td>In-app documentation reader allowing recruiters to read all PM artifacts without leaving the dashboard.</td>
+      </tr>
+      <tr>
+        <td><code>js/app.js</code></td>
+        <td>Application Bootstrap</td>
+        <td>Coordinates tab switching, dataset switching, sprint selection, theme toggling, and event bindings.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===================================================================
+       SECTION 4: PM DOCUMENTATION SUITE
+       =================================================================== -->
+  <div class="page-break"></div>
+  <h1>4. IT Project Management Documentation Suite</h1>
+  <p>
+    The <code>/docs</code> directory contains a comprehensive IT Project Management documentation package formulated to PMI/PMBOK and Agile standards:
+  </p>
+
+  <h2>4.1 Summary of PM Documents</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Document</th>
+        <th>Standard</th>
+        <th>Key Artifacts &amp; Methodological Deliverables</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>01_PROJECT_CHARTER.md</strong></td>
+        <td>PMBOK Initiation</td>
+        <td>Problem Statement, SMART Objectives, RACI Framework, Budget &amp; Resource Allocation Simulation, Stage-Gate Approvals.</td>
+      </tr>
+      <tr>
+        <td><strong>02_PRODUCT_REQUIREMENTS_PRD.md</strong></td>
+        <td>Agile Requirements</td>
+        <td>User Personas (APM, Scrum Master, VP Eng), MoSCoW Prioritization, User Story Mapping, Gherkin Acceptance Criteria.</td>
+      </tr>
+      <tr>
+        <td><strong>03_SYSTEM_ARCHITECTURE.md</strong></td>
+        <td>Software Architecture</td>
+        <td>Mermaid.js C4 Container Model, Component Diagrams, Data Flow Sequence Diagram, Mathematical Metric Specifications.</td>
+      </tr>
+      <tr>
+        <td><strong>04_RISK_REGISTER_RAID.md</strong></td>
+        <td>Risk Governance</td>
+        <td>5x5 Qualitative Likelihood vs. Impact Scoring, Active Risk Register, Assumptions, Issues, and Dependencies Logs.</td>
+      </tr>
+      <tr>
+        <td><strong>05_WBS_AND_ROADMAP.md</strong></td>
+        <td>Scope &amp; Time Mgmt</td>
+        <td>4-Level Work Breakdown Structure (WBS), Critical Path Analysis (9 Weeks), Mermaid Gantt Release Timeline.</td>
+      </tr>
+      <tr>
+        <td><strong>sprint_01_report.md</strong></td>
+        <td>Scrum Delivery</td>
+        <td>Sprint 1 Planning vs. Actual Velocity (90.4% predictability), Burndown Analysis, Mad/Sad/Glad Retrospective.</td>
+      </tr>
+      <tr>
+        <td><strong>sprint_02_report.md</strong></td>
+        <td>Continuous Improvement</td>
+        <td>Sprint 2 Delivery Report (95.5% predictability), PR review swarm intervention to resolve review stagnation.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===================================================================
+       SECTION 5: INTERACTIVE CEREMONY MODULES
+       =================================================================== -->
+  <h2>4.2 Interactive Ceremony Modules in Action</h2>
+  
+  <h3>1. Interactive Sprint Retrospective Board</h3>
+  <p>
+    Facilitates the continuous improvement ceremony. Team members post cards into <em>What Went Well (Green)</em>, <em>What Needs Improvement (Orange)</em>, and <em>Action Items for Next Sprint (Cyan)</em>. Cards can be upvoted dynamically, sorted by popularity, and saved to <code>localStorage</code>.
+  </p>
+
+  <h3>2. Fibonacci Planning Poker Story Point Estimator</h3>
+  <p>
+    Allows Scrum teams to estimate user stories collaboratively using the Fibonacci scale (<code>1, 2, 3, 5, 8, 13, 21, ?, ☕</code>). When cards are revealed, the engine calculates the average estimate, highlights outlier votes, and indicates team consensus.
+  </p>
+
+  <h3>3. RAID Log Manager (5x5 Qualitative Matrix)</h3>
+  <p>
+    Enables PMs to log and categorize Risks, Assumptions, Issues, and Dependencies. Each item is scored on Likelihood (1–5) and Impact (1–5), generating a severity level (Critical, High, Medium, Low) with mitigation action tracking.
+  </p>
+
+  <!-- ===================================================================
+       SECTION 6: GITHUB DEPLOYMENT & CI/CD
+       =================================================================== -->
+  <div class="page-break"></div>
+  <h1>5. GitHub Deployment &amp; CI/CD Pipeline</h1>
+
+  <h2>5.1 Automated GitHub Actions Workflow</h2>
+  <p>
+    The repository includes <code>.github/workflows/deploy.yml</code> for automated deployment to GitHub Pages on every push to the <code>main</code> branch:
+  </p>
+  <div class="formula-box">
+    git init<br>
+    git add .<br>
+    git commit -m "feat: Complete SprintPulse PM portfolio project"<br>
+    git branch -M main<br>
+    git remote add origin https://github.com/YOUR_USERNAME/sprintpulse.git<br>
+    git push -u origin main
+  </div>
+
+  <h2>5.2 GitHub Issue Templates</h2>
+  <p>
+    Under <code>.github/ISSUE_TEMPLATE/</code>, formal templates are provided for:
+  </p>
+  <ul>
+    <li><strong>Agile User Story:</strong> Enforces the <em>"As a... I want to... So that..."</em> syntax and Gherkin Acceptance Criteria.</li>
+    <li><strong>Bug Report:</strong> Standardized QA defect submission with steps to reproduce and severity ratings.</li>
+    <li><strong>Risk Escalation:</strong> Standardized form for escalating RAID log items to project management.</li>
+  </ul>
+
+  <!-- ===================================================================
+       SECTION 7: INTERVIEW PREPARATION GUIDE
+       =================================================================== -->
+  <h1>6. APM &amp; Scrum Master Interview Preparation Guide</h1>
+  <p>
+    Use these talking points when interviewing with tech companies in Sri Lanka (IFS, Sysco LABS, Virtusa, WSO2, 99x, Axiata Digital Labs, Pearson) or global remote teams:
+  </p>
+
+  <div class="callout">
+    <div class="callout-title">Q1: "Can you walk us through a project management project you worked on?"</div>
+    <strong>Answer:</strong> "I designed and implemented <strong>SprintPulse</strong>, an Agile Velocity &amp; Team Health Analytics platform. I acted as the Associate IT Project Manager, formulating the full SDLC governance suite—including a Project Charter with a RACI matrix, a Product Requirements Document with MoSCoW prioritization, a 5x5 RAID Risk Register, and a 4-Level WBS. I also developed the web application to calculate real-time Burndown trajectories, Velocity trends, and automated heuristic risk detection for overallocated developers and PR review bottlenecks."
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Q2: "How do you detect and handle scope creep during a sprint?"</div>
+    <strong>Answer:</strong> "In SprintPulse, I built a Scope Volatility Index that tracks points added mid-sprint against the initial commitment. When additions exceed 10%, the system flags a risk alert. As a PM, my approach is to enforce a strict MoSCoW change request process: if a new critical story must enter the sprint, we collaborate with the Product Owner to swap out an equivalent story point value of lower-priority work to protect team capacity."
+  </div>
+
+  <div class="callout info">
+    <div class="callout-title">Q3: "How do you ensure follow-through on Sprint Retrospective action items?"</div>
+    <strong>Answer:</strong> "During retrospectives, we capture feedback under 'Went Well', 'To Improve', and 'Action Items' with team upvoting. In SprintPulse, each action item requires an explicit assignee (e.g., Tech Lead or DevOps). At the start of the next Sprint Planning ceremony, these action items are converted into backlog tasks or Definition of Done checklist updates to ensure continuous improvement."
+  </div>
+
+  <div style="margin-top: 2rem; border-top: 1px solid #cbd5e1; padding-top: 1rem; font-size: 8pt; color: #64748b; text-align: center;">
+    <strong>SprintPulse Portfolio Documentation</strong> &bull; Sabaragamuwa University of Sri Lanka &bull; Faculty of Applied Sciences
+  </div>
+
+</body>
+</html>
