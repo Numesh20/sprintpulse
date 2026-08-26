@@ -41,6 +41,9 @@
       <button class="nav-tab active" data-tab="dashboard" id="tab-btn-dashboard">
         Dashboard
       </button>
+      <button class="nav-tab" data-tab="board" id="tab-btn-board">
+        Sprint Board
+      </button>
       <button class="nav-tab" data-tab="retrospective" id="tab-btn-retrospective">
         Retrospectives
       </button>
@@ -324,7 +327,29 @@
     </section>
 
     <!-- ===============================================================
-         TAB 2: Interactive Sprint Retrospective Board
+         TAB 2: Interactive Drag-and-Drop Sprint Task Board
+         =============================================================== -->
+    <section id="tab-board" class="tab-content">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+        <div>
+          <h2 style="font-size: 1.35rem;">Sprint Task Board</h2>
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Drag and drop tasks between columns &bull; Updates Burndown, Velocity, and Risk Radar in real time
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="App.openModal('modal-add-task')">
+          Create Task
+        </button>
+      </div>
+
+      <!-- Drag and Drop Kanban Columns -->
+      <div class="sprint-board-grid" id="sprint-board-columns">
+        <!-- Dynamically populated by sprintBoard.js -->
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 3: Interactive Sprint Retrospective Board
          =============================================================== -->
     <section id="tab-retrospective" class="tab-content">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
@@ -624,6 +649,52 @@
     </div>
   </div>
 
+  <!-- Add Task Modal -->
+  <div id="modal-add-task" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem;">Create Sprint Task</h3>
+        <button class="btn-icon" onclick="App.closeModal('modal-add-task')">&times;</button>
+      </div>
+      <form id="form-add-task" onsubmit="event.preventDefault(); handleAddTaskSubmit();">
+        <div class="form-group">
+          <label class="form-label">Task Title / User Story</label>
+          <input type="text" id="task-input-title" class="form-input" placeholder="e.g., Implement biometric authentication gateway" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Story Points (Fibonacci)</label>
+            <select id="task-input-sp" class="form-select">
+              <option value="1">1 SP</option>
+              <option value="2">2 SP</option>
+              <option value="3" selected>3 SP</option>
+              <option value="5">5 SP</option>
+              <option value="8">8 SP</option>
+              <option value="13">13 SP</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Initial Status</label>
+            <select id="task-input-status" class="form-select">
+              <option value="To Do" selected>To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="In Review">In Review</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Assignee</label>
+          <input type="text" id="task-input-assignee" class="form-input" placeholder="e.g., Dilshan Silva / Tech Lead" required>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-outline" onclick="App.closeModal('modal-add-task')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add to Sprint</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
@@ -649,6 +720,7 @@
   <script src="js/metrics.js"></script>
   <script src="js/charts.js"></script>
   <script src="js/riskEngine.js"></script>
+  <script src="js/sprintBoard.js"></script>
   <script src="js/retrospective.js"></script>
   <script src="js/planningPoker.js"></script>
   <script src="js/raidManager.js"></script>
@@ -658,6 +730,17 @@
 
   <script>
     // Form submission handlers
+    function handleAddTaskSubmit() {
+      const title = document.getElementById('task-input-title').value;
+      const sp = document.getElementById('task-input-sp').value;
+      const status = document.getElementById('task-input-status').value;
+      const assignee = document.getElementById('task-input-assignee').value;
+
+      SprintBoard.addNewTask({ title, sp, status, assignee });
+      App.closeModal('modal-add-task');
+      document.getElementById('form-add-task').reset();
+    }
+
     function handleAddRetroSubmit() {
       const category = document.getElementById('retro-input-category').value;
       const text = document.getElementById('retro-input-text').value;
