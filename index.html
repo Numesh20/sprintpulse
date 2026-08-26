@@ -44,6 +44,9 @@
       <button class="nav-tab" data-tab="board" id="tab-btn-board">
         Sprint Board
       </button>
+      <button class="nav-tab" data-tab="forecasting" id="tab-btn-forecasting">
+        Forecasting
+      </button>
       <button class="nav-tab" data-tab="retrospective" id="tab-btn-retrospective">
         Retrospectives
       </button>
@@ -349,7 +352,102 @@
     </section>
 
     <!-- ===============================================================
-         TAB 3: Interactive Sprint Retrospective Board
+         TAB 3: Monte Carlo Agile Velocity Simulator & Forecasting
+         =============================================================== -->
+    <section id="tab-forecasting" class="tab-content">
+      <div style="margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.35rem;">Monte Carlo Agile Velocity Forecaster</h2>
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Probabilistic delivery forecasting based on historical velocity distribution (Mean: <span id="mc-stat-mean" class="mono" style="color: var(--primary); font-weight: 700;">--</span>, StdDev: <span id="mc-stat-stddev" class="mono" style="color: var(--accent-cyan); font-weight: 700;">--</span>)
+        </div>
+      </div>
+
+      <!-- Simulation Controls -->
+      <div class="mc-controls-bar">
+        <div class="mc-inputs-group">
+          <div class="mc-input-wrap">
+            <span class="form-label" style="margin: 0;">Iterations:</span>
+            <select id="mc-runs-select" class="form-select" style="width: auto; padding: 0.35rem 0.75rem;" onchange="MonteCarloSimulator.setRuns(this.value)">
+              <option value="1000">1,000 Runs</option>
+              <option value="2000" selected>2,000 Runs (Recommended)</option>
+              <option value="5000">5,000 Runs</option>
+              <option value="10000">10,000 Runs</option>
+            </select>
+          </div>
+
+          <div class="mc-input-wrap">
+            <span class="form-label" style="margin: 0;">Target Story Points:</span>
+            <input type="number" id="mc-target-input" class="form-input" style="width: 85px; padding: 0.35rem 0.6rem;" value="40" min="1" max="100" onchange="MonteCarloSimulator.setTargetSP(this.value)">
+          </div>
+
+          <div class="mc-input-wrap">
+            <span class="form-label" style="margin: 0;">Probability:</span>
+            <span id="mc-target-prob-val" class="mono" style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">--%</span>
+            <span id="mc-target-prob-badge" class="kpi-badge badge-positive">High Confidence</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="MonteCarloSimulator.runSimulation()">
+          Run Simulation
+        </button>
+      </div>
+
+      <!-- Confidence Level Percentiles Grid -->
+      <div class="mc-percentiles-grid">
+        <div class="mc-confidence-card p95">
+          <span class="kpi-label">P95 (95% Confidence)</span>
+          <div id="mc-p95-val" class="mc-confidence-val mono">-- SP</div>
+          <span class="kpi-badge badge-positive">High Confidence Floor</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">95% chance squad delivers at least this volume</div>
+        </div>
+
+        <div class="mc-confidence-card p85">
+          <span class="kpi-label">P85 (85% Confidence)</span>
+          <div id="mc-p85-val" class="mc-confidence-val mono">-- SP</div>
+          <span class="kpi-badge badge-positive">Agile Planning Baseline</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">Recommended commitment for standard sprint planning</div>
+        </div>
+
+        <div class="mc-confidence-card p50">
+          <span class="kpi-label">P50 (50% Confidence)</span>
+          <div id="mc-p50-val" class="mc-confidence-val mono">-- SP</div>
+          <span class="kpi-badge badge-warning">Median / 50-50 Coin Toss</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">Equal probability of delivering more or less</div>
+        </div>
+
+        <div class="mc-confidence-card p15">
+          <span class="kpi-label">P15 (15% Confidence)</span>
+          <div id="mc-p15-val" class="mc-confidence-val mono">-- SP</div>
+          <span class="kpi-badge badge-negative">Stretch / Aggressive Target</span>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">High risk of sprint commitment rollover</div>
+        </div>
+      </div>
+
+      <!-- Simulation Distribution Chart Canvas -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <span class="card-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </span>
+            <div>
+              <h3 class="card-title">Simulated Velocity Distribution (Probability Density)</h3>
+              <div class="card-subtitle">Frequency distribution of simulated sprint outcomes across iterations</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-container" style="height: 320px;">
+          <canvas id="chart-monte-carlo-canvas"></canvas>
+        </div>
+
+        <div class="mc-guidance-box">
+          <strong>Project Manager Actionable Guidance:</strong> When committing to the next sprint backlog during Sprint Planning, use the <strong>P85 baseline</strong> to protect team capacity from rollover risk. If stakeholders demand a target above P50, negotiate to mark stories above the P85 line as <em>"Stretch Scope"</em> rather than committed deliverables.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         TAB 4: Interactive Sprint Retrospective Board
          =============================================================== -->
     <section id="tab-retrospective" class="tab-content">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
@@ -721,6 +819,7 @@
   <script src="js/charts.js"></script>
   <script src="js/riskEngine.js"></script>
   <script src="js/sprintBoard.js"></script>
+  <script src="js/monteCarlo.js"></script>
   <script src="js/retrospective.js"></script>
   <script src="js/planningPoker.js"></script>
   <script src="js/raidManager.js"></script>

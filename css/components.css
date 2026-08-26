@@ -392,6 +392,76 @@
 }
 
 /* ===================================================================
+   3.2 Monte Carlo Agile Velocity Simulator Styles
+   =================================================================== */
+.mc-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.mc-inputs-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.mc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mc-percentiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.mc-confidence-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.mc-confidence-card.p95 { border-top: 3px solid #10b981; }
+.mc-confidence-card.p85 { border-top: 3px solid #6366f1; }
+.mc-confidence-card.p50 { border-top: 3px solid #f59e0b; }
+.mc-confidence-card.p15 { border-top: 3px solid #f43f5e; }
+
+.mc-confidence-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.mc-guidance-box {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(6, 182, 212, 0.04));
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+/* ===================================================================
    3.1 Interactive Sprint Task Board (Kanban / Scrum)
    =================================================================== */
 .sprint-board-grid {

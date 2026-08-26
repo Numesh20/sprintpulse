@@ -12,6 +12,7 @@ const App = {
     this.loadTheme();
     this.updateDashboard();
     SprintBoard.init();
+    MonteCarloSimulator.init();
     SprintPlanningPoker.init();
     SprintRetrospective.render();
     SprintRAIDManager.render();
@@ -36,6 +37,7 @@ const App = {
         this.updateSprintOptions();
         this.updateDashboard();
         SprintBoard.render();
+        MonteCarloSimulator.runSimulation();
         this.showToast(`Switched squad to ${SPRINT_PULSE_DATA.squads[e.target.value].name}`, 'info');
       });
     }
@@ -47,6 +49,7 @@ const App = {
         SPRINT_PULSE_DATA.activeSprintId = e.target.value;
         this.updateDashboard();
         SprintBoard.render();
+        MonteCarloSimulator.runSimulation();
         this.showToast(`Active sprint updated: ${e.target.value}`, 'info');
       });
     }
@@ -76,6 +79,8 @@ const App = {
       this.updateDashboard();
     } else if (tabId === 'board') {
       SprintBoard.render();
+    } else if (tabId === 'forecasting') {
+      MonteCarloSimulator.runSimulation();
     } else if (tabId === 'retrospective') {
       SprintRetrospective.render();
     } else if (tabId === 'poker') {
