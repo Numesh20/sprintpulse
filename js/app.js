@@ -19,7 +19,9 @@ const App = {
     SprintRetrospective.render();
     SprintRAIDManager.render();
     SprintDocsViewer.init();
+    SquadBuilder.init();
   },
+
 
   bindEvents() {
     // Navigation tabs
