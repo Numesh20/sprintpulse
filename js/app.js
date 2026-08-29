@@ -20,6 +20,7 @@ const App = {
     SprintRAIDManager.render();
     SprintDocsViewer.init();
     SquadBuilder.init();
+    CSVImporter.init();
   },
 
 

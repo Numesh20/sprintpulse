@@ -1218,6 +1218,97 @@
       </div>
     </div>
 
+    <!-- CSV Importer Section -->
+    <div class="card" style="max-width:860px;margin:1.5rem auto 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+        <div>
+          <h3 style="font-size:1rem;margin:0;">Import from CSV</h3>
+          <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.3rem 0 0;">Upload a Jira-exported or GitHub Projects CSV. Columns are auto-detected and can be manually remapped.</p>
+        </div>
+        <div style="display:flex;gap:0.6rem;">
+          <button class="btn btn-outline btn-sm" onclick="CSVImporter.downloadSample()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Download Sample CSV
+          </button>
+          <button id="csv-reset-btn" class="btn btn-outline btn-sm" style="display:none;" onclick="CSVImporter.reset()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-3.1"></path></svg>
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Drop Zone -->
+      <div id="csv-drop-zone" class="csv-drop-zone">
+        <input type="file" id="csv-file-input" accept=".csv" style="display:none;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted);margin-bottom:0.75rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        <div style="font-weight:600;color:var(--text-primary);margin-bottom:0.3rem;">Drop your CSV file here</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);">or click to browse &bull; Supports Jira, GitHub Projects, Trello exports</div>
+      </div>
+
+      <!-- Config Panel (shown after file is loaded) -->
+      <div id="csv-config-panel" style="display:none;">
+
+        <!-- Stats Row -->
+        <div id="csv-import-stats" class="csv-stats-row" style="margin-bottom:1.25rem;"></div>
+
+        <!-- Column Mapper -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent-indigo);margin-bottom:0.75rem;">Column Mapping</div>
+          <div id="csv-column-mapper" class="csv-mapper-grid"></div>
+        </div>
+
+        <!-- Preview Table -->
+        <div id="csv-preview-table" style="margin-bottom:1.5rem;"></div>
+
+        <!-- Sprint Config Form -->
+        <div style="border-top:1px solid var(--border-subtle);padding-top:1.25rem;">
+          <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent-indigo);margin-bottom:0.75rem;">Sprint Configuration</div>
+
+          <div class="sb-form-grid">
+            <div class="sb-field">
+              <label class="sb-label" for="csv-squad-name">Squad Name <span class="sb-required">*</span></label>
+              <input id="csv-squad-name" class="sb-input" type="text" placeholder="e.g. My Project Squad">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="csv-sprint-name">Sprint Name <span class="sb-required">*</span></label>
+              <input id="csv-sprint-name" class="sb-input" type="text" placeholder="e.g. Sprint 01: Core Features">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="csv-sprint-start">Start Date <span class="sb-required">*</span></label>
+              <input id="csv-sprint-start" class="sb-input" type="date">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="csv-sprint-end">End Date <span class="sb-required">*</span></label>
+              <input id="csv-sprint-end" class="sb-input" type="date">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="csv-sprint-committed">Committed SP <span class="sb-required">*</span></label>
+              <input id="csv-sprint-committed" class="sb-input" type="number" placeholder="Auto-filled from SP sum" min="1">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="csv-sprint-totaldays">Total Sprint Days</label>
+              <input id="csv-sprint-totaldays" class="sb-input" type="number" value="10" min="1" max="30">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label" for="csv-sprint-currentday">Current Day</label>
+              <input id="csv-sprint-currentday" class="sb-input" type="number" value="1" min="1" max="30">
+            </div>
+            <div class="sb-field">
+              <label class="sb-label">Detected Team Members</label>
+              <div id="csv-detected-members" class="sb-input" style="min-height:40px;font-size:0.78rem;color:var(--text-secondary);overflow-y:auto;">Upload a CSV to detect assignees</div>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:flex-end;margin-top:1rem;">
+            <button class="btn btn-primary" style="background:var(--accent-cyan);border-color:var(--accent-cyan);" onclick="CSVImporter.importData()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Import &amp; Activate Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /csv importer card -->
+
   </section>
 
   <!-- ===================================================================
@@ -1252,6 +1343,7 @@
   <script src="js/exportReport.js"></script>
   <script src="js/docsViewer.js"></script>
   <script src="js/squadBuilder.js"></script>
+  <script src="js/csvImporter.js"></script>
   <script src="js/app.js"></script>
 
   <script>
