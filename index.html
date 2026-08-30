@@ -74,6 +74,9 @@
       <button class="nav-tab" data-tab="comparison" id="tab-btn-comparison">
         Sprint Compare
       </button>
+      <button class="nav-tab" data-tab="heatmap" id="tab-btn-heatmap">
+        Team Heatmap
+      </button>
     </nav>
 
     <!-- Header Dataset & Theme Controls -->
@@ -1396,6 +1399,62 @@
 
   </section>
 
+  <!-- ===============================================================
+       TAB 13: Team Performance Heatmap
+       =============================================================== -->
+  <section id="tab-heatmap" class="tab-content">
+
+    <!-- Squad Selector + Header -->
+    <div class="card" style="margin-bottom:1.25rem;padding:1rem 1.5rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h2 style="font-size:1.1rem;margin:0;">Team Performance Heatmap</h2>
+          <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.3rem 0 0;">Story-point utilisation per developer across all sprints. Click any row for detailed breakdown.</p>
+        </div>
+        <div class="sb-field" style="min-width:260px;">
+          <label class="sb-label">Select Squad</label>
+          <select id="hm-squad-select" class="sb-input" onchange="TeamHeatmap.onSquadChange()"></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI Row -->
+    <div id="hm-kpi-row" class="hm-kpi-row"></div>
+
+    <!-- Heatmap Grid -->
+    <div class="card" style="margin-bottom:1.25rem;">
+      <div class="card-header">
+        <h3 class="card-title">Utilisation Heatmap</h3>
+        <span class="kpi-badge badge-neutral">SP Assigned / Capacity per Sprint</span>
+      </div>
+      <div id="hm-grid"></div>
+    </div>
+
+    <!-- Charts + Detail Grid -->
+    <div class="hm-bottom-grid">
+      <!-- Trend Chart -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Team Load Trend</h3>
+          <span class="kpi-badge badge-neutral">Utilisation % per Sprint</span>
+        </div>
+        <div style="height:280px;position:relative;">
+          <canvas id="hm-load-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Member Detail -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Member Detail</h3>
+          <span class="kpi-badge badge-neutral">Sprint-by-Sprint Breakdown</span>
+        </div>
+        <div id="hm-member-detail"></div>
+      </div>
+    </div>
+
+  </section>
+
   <!-- ===================================================================
        4. Footer & University Attribution
        =================================================================== -->
@@ -1430,6 +1489,7 @@
   <script src="js/squadBuilder.js"></script>
   <script src="js/csvImporter.js"></script>
   <script src="js/sprintComparison.js"></script>
+  <script src="js/teamHeatmap.js"></script>
   <script src="js/app.js"></script>
 
   <script>

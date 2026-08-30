@@ -1897,3 +1897,255 @@
   .cmp-kpi-row       { grid-template-columns: 1fr 1fr; }
   .cmp-selector-fields { grid-template-columns: 1fr; }
 }
+
+/* ===================================================================
+   Team Performance Heatmap
+   =================================================================== */
+
+/* KPI Row */
+.hm-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.hm-kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: border-color 0.2s;
+}
+.hm-kpi-card:hover { border-color: var(--border-active); }
+.hm-kpi-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.4rem;
+}
+.hm-kpi-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1;
+}
+.hm-kpi-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+.hm-kpi-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Heatmap Grid */
+.hm-grid-wrap {
+  overflow-x: auto;
+}
+.hm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.hm-table th {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  background: var(--bg-input);
+}
+.hm-th-sprint { text-align: center; min-width: 80px; }
+.hm-th-avg    { text-align: center; min-width: 60px; }
+.hm-th-trend  { text-align: center; min-width: 50px; }
+.hm-th-member { min-width: 160px; }
+.hm-th-role   { min-width: 160px; }
+
+.hm-row {
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.15s;
+}
+.hm-row:hover { background: rgba(255,255,255,0.02); }
+.hm-row--selected { background: rgba(99,102,241,0.06) !important; }
+.hm-row td { padding: 0.55rem 0.75rem; vertical-align: middle; }
+
+.hm-td-member { min-width: 160px; }
+.hm-td-role   { font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; }
+.hm-td-avg    { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+.hm-td-trend  { text-align: center; font-size: 1rem; }
+
+/* Heatmap Cell */
+.hm-cell {
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.4rem 0.3rem !important;
+  min-width: 70px;
+  cursor: default;
+  transition: opacity 0.2s;
+}
+.hm-cell:hover { opacity: 0.85; }
+.hm-cell-pct {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.hm-cell-sp {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+/* Member chip */
+.hm-member-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hm-member-chip span { font-size: 0.82rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+
+/* Avatar */
+.hm-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+.hm-avatar--lg { width: 44px; height: 44px; font-size: 0.82rem; }
+
+/* Legend */
+.hm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.25rem 0;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 0.75rem;
+}
+.hm-legend-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-right: 0.25rem;
+}
+.hm-legend-item {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Bottom Grid */
+.hm-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Member Detail Panel */
+.hm-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.hm-detail-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.hm-detail-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.5rem;
+}
+.hm-detail-stat-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1;
+}
+.hm-detail-stat-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Detail Sprint Rows */
+.hm-detail-sprints { display: flex; flex-direction: column; gap: 0.5rem; }
+.hm-detail-sprint-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 50px 70px;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+}
+.hm-detail-sprint-name { color: var(--text-secondary); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hm-detail-sprint-bar-wrap {
+  height: 8px;
+  background: var(--bg-input);
+  border-radius: 99px;
+  overflow: visible;
+  position: relative;
+}
+.hm-detail-sprint-bar {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+.hm-detail-sprint-cap-line {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 1px;
+}
+.hm-detail-sprint-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; text-align: center; }
+.hm-detail-sprint-sp  { font-size: 0.72rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; text-align: right; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hm-kpi-row     { grid-template-columns: 1fr 1fr; }
+  .hm-bottom-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .hm-kpi-row          { grid-template-columns: 1fr 1fr; }
+  .hm-detail-stats     { grid-template-columns: 1fr 1fr; }
+  .hm-detail-sprint-row { grid-template-columns: 80px 1fr 44px; }
+  .hm-detail-sprint-sp  { display: none; }
+}

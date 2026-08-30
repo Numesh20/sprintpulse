@@ -22,6 +22,7 @@ const App = {
     SquadBuilder.init();
     CSVImporter.init();
     SprintComparison.init();
+    TeamHeatmap.init();
   },
 
 
