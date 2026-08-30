@@ -71,6 +71,9 @@
       <button class="nav-tab" data-tab="builder" id="tab-btn-builder">
         Squad Builder
       </button>
+      <button class="nav-tab" data-tab="comparison" id="tab-btn-comparison">
+        Sprint Compare
+      </button>
     </nav>
 
     <!-- Header Dataset & Theme Controls -->
@@ -1311,6 +1314,88 @@
 
   </section>
 
+  <!-- ===============================================================
+       TAB 12: Sprint Comparison View
+       =============================================================== -->
+  <section id="tab-comparison" class="tab-content">
+
+    <!-- Selectors Row -->
+    <div class="cmp-selectors-row">
+      <!-- Sprint A -->
+      <div class="cmp-selector-group cmp-selector-a">
+        <div class="cmp-selector-label cmp-label-a">Sprint A</div>
+        <div class="cmp-selector-fields">
+          <div class="sb-field">
+            <label class="sb-label">Squad</label>
+            <select id="cmp-squad-a" class="sb-input" onchange="SprintComparison.onSquadChange('a')"></select>
+          </div>
+          <div class="sb-field">
+            <label class="sb-label">Sprint</label>
+            <select id="cmp-sprint-a" class="sb-input" onchange="SprintComparison.onSprintChange()"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmp-vs-badge">VS</div>
+
+      <!-- Sprint B -->
+      <div class="cmp-selector-group cmp-selector-b">
+        <div class="cmp-selector-label cmp-label-b">Sprint B</div>
+        <div class="cmp-selector-fields">
+          <div class="sb-field">
+            <label class="sb-label">Squad</label>
+            <select id="cmp-squad-b" class="sb-input" onchange="SprintComparison.onSquadChange('b')"></select>
+          </div>
+          <div class="sb-field">
+            <label class="sb-label">Sprint</label>
+            <select id="cmp-sprint-b" class="sb-input" onchange="SprintComparison.onSprintChange()"></select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sprint Header Cards -->
+    <div class="cmp-header-grid">
+      <div class="card cmp-header-card cmp-card-a" id="cmp-header-a"></div>
+      <div class="card cmp-header-card cmp-card-b" id="cmp-header-b"></div>
+    </div>
+
+    <!-- KPI Delta Row -->
+    <div id="cmp-kpi-row" class="cmp-kpi-row"></div>
+
+    <!-- Charts Row -->
+    <div class="cmp-charts-grid">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Burndown Overlay</h3>
+          <span class="kpi-badge badge-neutral">Sprint A vs Sprint B</span>
+        </div>
+        <div style="height:260px;position:relative;">
+          <canvas id="cmp-burndown-chart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Velocity &amp; Delivery Metrics</h3>
+          <span class="kpi-badge badge-neutral">Grouped Comparison</span>
+        </div>
+        <div style="height:260px;position:relative;">
+          <canvas id="cmp-velocity-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workload Comparison -->
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-header">
+        <h3 class="card-title">Team Workload Comparison</h3>
+        <span class="kpi-badge badge-neutral">SP Assigned vs Capacity</span>
+      </div>
+      <div id="cmp-workload-table"></div>
+    </div>
+
+  </section>
+
   <!-- ===================================================================
        4. Footer & University Attribution
        =================================================================== -->
@@ -1344,6 +1429,7 @@
   <script src="js/docsViewer.js"></script>
   <script src="js/squadBuilder.js"></script>
   <script src="js/csvImporter.js"></script>
+  <script src="js/sprintComparison.js"></script>
   <script src="js/app.js"></script>
 
   <script>

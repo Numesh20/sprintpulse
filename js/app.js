@@ -21,6 +21,7 @@ const App = {
     SprintDocsViewer.init();
     SquadBuilder.init();
     CSVImporter.init();
+    SprintComparison.init();
   },
 
 
