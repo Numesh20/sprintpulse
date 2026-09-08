@@ -229,15 +229,56 @@ const App = {
 
   toggleTheme() {
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', this.theme);
     localStorage.setItem('sprint_pulse_theme', this.theme);
-    this.updateDashboard();
+    this._applyThemeUI(true);
+    // Re-render charts after colour variables settle
+    setTimeout(() => this.updateDashboard(), 80);
   },
 
   loadTheme() {
-    const saved = localStorage.getItem('sprint_pulse_theme') || 'dark';
-    this.theme = saved;
+    // Respect saved preference, then OS preference, then default dark
+    const saved = localStorage.getItem('sprint_pulse_theme');
+    if (saved) {
+      this.theme = saved;
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      this.theme = 'light';
+    } else {
+      this.theme = 'dark';
+    }
+    this._applyThemeUI(false);
+
+    // Listen for OS preference changes (only when no saved preference)
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+      if (!localStorage.getItem('sprint_pulse_theme')) {
+        this.theme = e.matches ? 'light' : 'dark';
+        this._applyThemeUI(true);
+      }
+    });
+  },
+
+  _applyThemeUI(animate) {
+    const isLight = this.theme === 'light';
     document.documentElement.setAttribute('data-theme', this.theme);
+
+    // Pill toggle state
+    const btn   = document.getElementById('btn-theme-toggle');
+    const thumb = document.getElementById('theme-pill-thumb');
+    const wrap  = document.getElementById('theme-toggle-wrap');
+    if (btn)  btn.setAttribute('aria-checked', String(isLight));
+    if (wrap) wrap.setAttribute('data-light', String(isLight));
+
+    // Thumb slide animation
+    if (thumb) {
+      if (animate) {
+        thumb.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease';
+      } else {
+        thumb.style.transition = 'none';
+      }
+      thumb.style.transform = isLight ? 'translateX(22px)' : 'translateX(0px)';
+      thumb.style.background = isLight
+        ? 'linear-gradient(135deg, #fbbf24, #f59e0b)'
+        : 'linear-gradient(135deg, #6366f1, #4f46e5)';
+    }
   },
 
   openModal(id) {

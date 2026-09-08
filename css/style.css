@@ -194,6 +194,14 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
 }
 
+/* Light mode body gradient */
+[data-theme="light"] body {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.07) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(251, 191, 36, 0.06) 0px, transparent 50%);
+}
+
+
 .brand-tag {
   font-size: 0.7rem;
   color: var(--accent-cyan);
@@ -241,6 +249,106 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-secondary);
   color: var(--text-primary);
 }
+
+/* ───────────────────────────────────────────────────
+   Animated Dark / Light Mode Toggle
+   ─────────────────────────────────────────────────── */
+
+/* Smooth colour transition for the whole page */
+html {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+body,
+.card,
+.app-header,
+.app-footer,
+.nav-tabs,
+.kpi-card,
+.sb-input,
+.btn {
+  transition:
+    background 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.25s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Toggle wrapper: sun — pill — moon */
+.theme-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Sun & Moon icons */
+.theme-icon {
+  stroke: var(--text-muted);
+  flex-shrink: 0;
+  transition: stroke 0.3s ease, opacity 0.3s ease, transform 0.4s ease;
+}
+/* Dark mode: sun is dim, moon is bright */
+.theme-icon--sun  { opacity: 0.4; transform: rotate(0deg) scale(0.9); }
+.theme-icon--moon { opacity: 1;   transform: rotate(0deg) scale(1.05); stroke: var(--accent-indigo); }
+
+/* Light mode: sun is bright, moon is dim */
+.theme-toggle-wrap[data-light="true"] .theme-icon--sun  {
+  opacity: 1;
+  transform: rotate(20deg) scale(1.1);
+  stroke: #f59e0b;
+}
+.theme-toggle-wrap[data-light="true"] .theme-icon--moon {
+  opacity: 0.35;
+  transform: rotate(0deg) scale(0.9);
+  stroke: var(--text-muted);
+}
+
+/* Pill track */
+.theme-pill {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-input);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.theme-pill:focus-visible {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+.theme-pill:hover {
+  border-color: var(--border-active);
+}
+
+/* Thumb (the sliding dot) */
+.theme-pill-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  /* JS will override transform and transition on click */
+  transform: translateX(0px);
+  will-change: transform;
+}
+
+/* Light mode — pill track brightens */
+[data-theme="light"] .theme-pill {
+  background: #e2e8f0;
+  border-color: rgba(0,0,0,0.12);
+}
+
 
 /* Main Nav Tabs */
 .nav-tabs {
