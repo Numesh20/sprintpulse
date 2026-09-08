@@ -23,6 +23,7 @@ const App = {
     CSVImporter.init();
     SprintComparison.init();
     TeamHeatmap.init();
+    WorkspaceIO.init();
   },
 
 

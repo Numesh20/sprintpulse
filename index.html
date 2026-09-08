@@ -98,6 +98,39 @@
         </select>
       </div>
 
+      <!-- Workspace Export / Import -->
+      <div class="wio-wrap" style="position:relative;">
+        <button id="btn-workspace-io" class="btn btn-outline btn-sm" onclick="WorkspaceIO.openPanel()" title="Export or Import Workspace">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Workspace
+        </button>
+        <!-- Dropdown Panel -->
+        <div id="workspace-io-panel" class="wio-panel">
+          <div class="wio-panel-header">
+            <span class="wio-panel-title">Workspace Manager</span>
+            <button class="wio-close" onclick="WorkspaceIO.closePanel()" aria-label="Close">&times;</button>
+          </div>
+          <!-- Live Stats -->
+          <div id="wio-stats" class="wio-stats"></div>
+          <!-- Actions -->
+          <div class="wio-actions">
+            <button class="btn btn-primary btn-sm wio-action-btn" onclick="WorkspaceIO.exportWorkspace()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Export Workspace (.json)
+            </button>
+            <button class="btn btn-outline btn-sm wio-action-btn" onclick="WorkspaceIO.triggerImport()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Import Workspace (.json)
+            </button>
+          </div>
+          <p class="wio-hint">Exports all squads, sprints, tasks, RAID log, retrospectives, and theme settings into a single <code>.json</code> file. Import it on any device to fully restore your workspace.</p>
+          <!-- Import confirm area -->
+          <div id="wio-import-confirm" style="display:none;"></div>
+          <!-- Hidden file input -->
+          <input type="file" id="wio-file-input" accept=".json" style="display:none;" onchange="WorkspaceIO.onFileSelected(event)">
+        </div>
+      </div>
+
       <!-- Animated Dark/Light Mode Toggle -->
       <div class="theme-toggle-wrap" id="theme-toggle-wrap" title="Toggle Dark / Light Mode">
         <!-- Sun icon -->
@@ -1504,6 +1537,7 @@
   <script src="js/csvImporter.js"></script>
   <script src="js/sprintComparison.js"></script>
   <script src="js/teamHeatmap.js"></script>
+  <script src="js/workspaceIO.js"></script>
   <script src="js/app.js"></script>
 
   <script>
