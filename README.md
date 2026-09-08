@@ -12,12 +12,12 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-f7df1e.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Chart.js](https://img.shields.io/badge/Chart.js-4.x-ff6384.svg)](https://www.chartjs.org/)
 [![Zero Build](https://img.shields.io/badge/Zero--Build-No%20Node%20Required-34d399.svg)](#how-to-run-locally)
-[![Deploy](https://img.shields.io/badge/Deploy-Vercel%20%2F%20GitHub%20Pages-06b6d4.svg)](#deployment)
+[![Deploy](https://img.shields.io/badge/Live%20Demo-sprintpulse--eight.vercel.app-06b6d4.svg)](https://sprintpulse-eight.vercel.app/)
 [![SUSL](https://img.shields.io/badge/SUSL-Faculty%20of%20Applied%20Sciences-f59e0b.svg)](https://www.sab.ac.lk)
 
 **An enterprise-grade Agile Project Management & Sprint Analytics dashboard built for Associate IT Project Managers, Scrum Masters, and Engineering Leads.**
 
-[**Live Demo**](https://Numesh20.github.io/sprintpulse) · [**PM Documentation Suite**](#it-project-management-documentation-suite) · [**Features**](#features) · [**Run Locally**](#how-to-run-locally)
+[**🚀 Live Demo**](https://sprintpulse-eight.vercel.app/) · [**PM Documentation Suite**](#it-project-management-documentation-suite) · [**Features**](#features) · [**Run Locally**](#how-to-run-locally)
 
 </div>
 
@@ -219,11 +219,14 @@ Then go to **Settings → Pages → Source → Deploy from branch** (`main` / ro
 
 The included GitHub Actions workflow (`.github/workflows/deploy.yml`) handles automated re-deployment on every push to `main`.
 
-### Vercel (Recommended — 60 seconds)
+### Vercel — Already Deployed
+**Live URL: [https://sprintpulse-eight.vercel.app/](https://sprintpulse-eight.vercel.app/)**
+
+To redeploy after new commits:
 ```bash
 npx vercel --prod
 ```
-Or connect the GitHub repository at [vercel.com](https://vercel.com) for automatic deployments. The included `vercel.json` is pre-configured.
+Or push to the connected GitHub branch — Vercel auto-deploys on every `git push`. The included `vercel.json` is pre-configured.
 
 ---
 
