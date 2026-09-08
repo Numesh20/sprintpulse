@@ -2,17 +2,262 @@
 
 <div align="center">
 
-![License: MIT](https://img.shields.io/badge/License-MIT-indigo.svg)
-![Agile Framework](https://img.shields.io/badge/Agile-Scrum%20%26%20Kanban-cyan.svg)
-![Documentation](https://img.shields.io/badge/PM%20Docs-100%25%20Complete-emerald.svg)
-![Deployment](https://img.shields.io/badge/Deploy-GitHub%20Pages%20%2F%20Vercel-blue.svg)
-![Academic Affiliation](https://img.shields.io/badge/Faculty%20of%20Applied%20Sciences-SUSL-orange.svg)
+![SprintPulse Banner](docs/banner.jpg)
 
-**An enterprise-grade Agile Project Management & Sprint Analytics Dashboard engineered for Associate IT Project Managers, Scrum Masters, and Engineering Leads.**
+# SprintPulse
+### Agile Velocity & Team Health Analytics Platform
 
-[View Live Interactive Demo](https://Numesh20.github.io/sprintpulse) &bull; [Read PM Documentation Suite](#it-project-management-documentation-suite) &bull; [Explore Features](#key-features--capabilities)
+[![License: MIT](https://img.shields.io/badge/License-MIT-6366f1.svg)](LICENSE)
+[![HTML5](https://img.shields.io/badge/HTML5-Semantic-e34f26.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-f7df1e.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Chart.js](https://img.shields.io/badge/Chart.js-4.x-ff6384.svg)](https://www.chartjs.org/)
+[![Zero Build](https://img.shields.io/badge/Zero--Build-No%20Node%20Required-34d399.svg)](#how-to-run-locally)
+[![Deploy](https://img.shields.io/badge/Deploy-Vercel%20%2F%20GitHub%20Pages-06b6d4.svg)](#deployment)
+[![SUSL](https://img.shields.io/badge/SUSL-Faculty%20of%20Applied%20Sciences-f59e0b.svg)](https://www.sab.ac.lk)
+
+**An enterprise-grade Agile Project Management & Sprint Analytics dashboard built for Associate IT Project Managers, Scrum Masters, and Engineering Leads.**
+
+[**Live Demo**](https://Numesh20.github.io/sprintpulse) · [**PM Documentation Suite**](#it-project-management-documentation-suite) · [**Features**](#features) · [**Run Locally**](#how-to-run-locally)
 
 </div>
+
+---
+
+## Executive Summary
+
+Modern engineering teams lose sprint predictability to fragmented tools, silent scope creep, and invisible team burnout. **SprintPulse** closes this gap by delivering a single-file, zero-dependency analytics platform that surfaces what matters — velocity, predictability, risk, and team health — in one premium interface.
+
+Built by a 3rd-year IT undergraduate at **Sabaragamuwa University of Sri Lanka (SUSL)** targeting an **Associate IT Project Manager (APM) / Scrum Master** internship, this project demonstrates:
+
+- **Full-stack web engineering** — Vanilla JS SPA, modular architecture, Chart.js data visualisation.
+- **Agile practitioner depth** — Monte Carlo forecasting, CFD/Little's Law, Planning Poker, RAID governance, Retrospective facilitation.
+- **PM documentation maturity** — PMBOK/PMI-aligned project charter, PRD, system architecture, risk register, WBS, and sprint delivery reports.
+
+---
+
+## What This Demonstrates to a Hiring Manager
+
+| Skill Area | Evidence in SprintPulse |
+| :--- | :--- |
+| **Agile / Scrum facilitation** | Standup Facilitator, Planning Poker, Retrospective Board, Sprint Comparison |
+| **Data-driven PM** | Monte Carlo simulator (1k–10k runs), Burndown/Burnup, Velocity trending |
+| **Risk management** | Automated risk radar, 5×5 RAID Log with severity scoring |
+| **Kanban & flow** | Cumulative Flow Diagram, Little's Law WIP simulator |
+| **Stakeholder reporting** | One-click executive report (Markdown → PDF/Slack/Email ready) |
+| **Team health monitoring** | Performance Heatmap (utilisation %, overallocation, consistency scores) |
+| **Technical initiative** | Zero-build SPA, localStorage persistence, JSON workspace backup |
+| **Documentation** | Full PMBOK-aligned doc suite: Charter, PRD, Architecture, RAID, WBS, Sprint Reports |
+
+---
+
+## Features
+
+### Core Analytics
+
+| # | Module | Description |
+| :- | :--- | :--- |
+| 1 | **Sprint Analytics Dashboard** | Composite Health Index, interactive burndown/burnup, velocity trend, scope creep index |
+| 2 | **Automated Risk Radar** | Heuristic engine detecting overallocation, PR review bottlenecks, scope volatility with remediation steps |
+| 3 | **Sprint Task Board** | Drag-and-drop Kanban board (To Do → In Progress → In Review → Done) |
+| 4 | **Monte Carlo Simulator** | 1,000–10,000 probabilistic simulations; P95/P85/P50/P15 delivery confidence intervals |
+| 5 | **Kanban CFD & Little's Law** | Multi-stage queue visualisation + interactive WIP limit simulator (Lead Time = WIP ÷ Throughput) |
+
+### Agile Ceremonies
+
+| # | Module | Description |
+| :- | :--- | :--- |
+| 6 | **Daily Standup Facilitator** | 15-minute timeboxed ceremony; 2-min speaker rotation; parking lot; 1-click RAID escalation |
+| 7 | **Retrospective Board** | 3-column board (Went Well / Needs Improvement / Action Items) with upvoting & local persistence |
+| 8 | **Planning Poker** | Fibonacci deck (1–21, ?, Pass); simulated squad voting; consensus calculation |
+| 9 | **RAID Log Manager** | Filterable register; 5×5 Likelihood×Impact scoring; modal entry forms; category badges |
+
+### Portfolio & Reporting
+
+| # | Module | Description |
+| :- | :--- | :--- |
+| 10 | **Executive Report Generator** | One-click stakeholder briefing in Markdown; print-to-PDF layout |
+| 11 | **PM Artifacts Viewer** | In-app reader for all 7 project management documents |
+
+### Advanced Data Tools
+
+| # | Module | Description |
+| :- | :--- | :--- |
+| 12 | **Custom Squad Builder** | 5-step wizard — squad info, members, sprint config, task backlog, launch |
+| 13 | **Jira CSV Importer** | Drag-and-drop CSV parser; auto-detects Issue Key/Summary/Status/SP/Assignee columns; live preview |
+| 14 | **Sprint Comparison View** | Side-by-side sprint analysis: burndown overlay, velocity bars, delta KPI cards (velocity, predictability, scope creep, health) |
+| 15 | **Team Performance Heatmap** | Member × Sprint utilisation grid; colour-coded load (green/amber/red); trend chart; member drill-down |
+| 16 | **JSON Workspace Export & Import** | Full workspace backup (all squads, RAID, retros, theme) to one `.json` file; restore on any device |
+
+### UX & Polish
+
+- **Animated Dark/Light Mode Toggle** — sun/moon pill switch, system preference detection, `localStorage` persistence, 350ms page fade.
+- **Responsive Design** — works on desktop, tablet, and mobile.
+- **Zero Build Dependencies** — runs by opening `index.html` in any modern browser.
+
+---
+
+## Technology Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Structure** | Semantic HTML5 |
+| **Logic** | Vanilla JavaScript ES6+ (no frameworks) |
+| **Styling** | CSS3 — Custom design tokens, glassmorphism, CSS variables, dark/light themes |
+| **Charts** | Chart.js 4.x — Line, Bar, Radar, Doughnut, Scatter |
+| **Typography** | Google Fonts — Plus Jakarta Sans + JetBrains Mono |
+| **Persistence** | Browser `localStorage` (no backend required) |
+| **Deployment** | GitHub Pages + Vercel (both configured) |
+| **CI/CD** | GitHub Actions (`deploy.yml`) |
+
+---
+
+## IT Project Management Documentation Suite
+
+Full lifecycle documentation in the [`/docs`](docs/) directory, aligned to **PMI/PMBOK** and **Agile** standards:
+
+| Document | Artifacts Included |
+| :--- | :--- |
+| [01. Project Charter](docs/01_PROJECT_CHARTER.md) | SMART Objectives, RACI Matrix, Budget Simulation, Stakeholder Register |
+| [02. Product Requirements (PRD)](docs/02_PRODUCT_REQUIREMENTS_PRD.md) | User Personas, MoSCoW Prioritisation, Gherkin Acceptance Criteria |
+| [03. System Architecture](docs/03_SYSTEM_ARCHITECTURE.md) | C4 Container Diagrams (Mermaid), Data Flows, Mathematical Metric Models |
+| [04. Risk Register (RAID)](docs/04_RISK_REGISTER_RAID.md) | 5×5 Likelihood×Impact Matrix, Mitigation & Contingency Plans |
+| [05. WBS & Release Roadmap](docs/05_WBS_AND_ROADMAP.md) | 4-Level WBS, Critical Path, Mermaid Gantt Chart |
+| [06. Sprint 01 Report](docs/sprints/sprint_01_report.md) | Velocity 90.4% Predictability, Burndown Analysis, Retrospective Actions |
+| [07. Sprint 02 Report](docs/sprints/sprint_02_report.md) | Velocity 95.5% Predictability, PR Review Swarm Intervention |
+
+---
+
+## Repository Structure
+
+```
+sprintpulse/
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── user_story.md           # Agile story template (Gherkin)
+│   │   ├── bug_report.md           # QA defect template
+│   │   └── risk_escalation.md      # RAID escalation template
+│   └── workflows/
+│       └── deploy.yml              # GitHub Pages CI/CD
+├── docs/
+│   ├── banner.jpg                  # Project banner
+│   ├── 01_PROJECT_CHARTER.md
+│   ├── 02_PRODUCT_REQUIREMENTS_PRD.md
+│   ├── 03_SYSTEM_ARCHITECTURE.md
+│   ├── 04_RISK_REGISTER_RAID.md
+│   ├── 05_WBS_AND_ROADMAP.md
+│   └── sprints/
+│       ├── sprint_01_report.md
+│       └── sprint_02_report.md
+├── css/
+│   ├── style.css                   # Design tokens, dark/light themes, typography
+│   └── components.css              # Cards, charts, modals, wizard, heatmap, comparison
+├── js/
+│   ├── data.js                     # 3 pre-loaded squad datasets
+│   ├── metrics.js                  # Velocity, burndown & health score calculations
+│   ├── charts.js                   # Chart.js rendering engine
+│   ├── riskEngine.js               # Heuristic risk detection
+│   ├── sprintBoard.js              # Drag-and-drop task board
+│   ├── monteCarlo.js               # Probabilistic delivery simulator
+│   ├── kanbanAnalytics.js          # CFD & Little's Law analyser
+│   ├── standupFacilitator.js       # 15-min Scrum ceremony coordinator
+│   ├── retrospective.js            # Retro board with persistence
+│   ├── planningPoker.js            # Story point estimation poker
+│   ├── raidManager.js              # RAID log with 5×5 scoring
+│   ├── exportReport.js             # Executive report generator
+│   ├── docsViewer.js               # In-app PM documentation reader
+│   ├── squadBuilder.js             # 5-step custom squad wizard
+│   ├── csvImporter.js              # Jira-compatible CSV parser
+│   ├── sprintComparison.js         # Side-by-side sprint analysis
+│   ├── teamHeatmap.js              # Team performance heatmap
+│   ├── workspaceIO.js              # JSON workspace export & import
+│   └── app.js                      # SPA bootstrap & event coordination
+├── index.html                      # Single Page Application entry point
+├── vercel.json                     # Vercel deployment config
+├── LICENSE                         # MIT License
+└── README.md
+```
+
+---
+
+## How to Run Locally
+
+No Node.js, no npm, no build step required.
+
+### Option 1 — Open directly
+```bash
+git clone https://github.com/Numesh20/sprintpulse.git
+cd sprintpulse
+# Double-click index.html, or:
+start index.html       # Windows
+open index.html        # macOS
+```
+
+### Option 2 — Local static server
+```bash
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve .
+```
+Then open `http://localhost:8000`.
+
+---
+
+## Deployment
+
+### GitHub Pages
+```bash
+git init
+git add .
+git commit -m "feat: initial SprintPulse deployment"
+git branch -M main
+git remote add origin https://github.com/Numesh20/sprintpulse.git
+git push -u origin main
+```
+Then go to **Settings → Pages → Source → Deploy from branch** (`main` / root).
+
+The included GitHub Actions workflow (`.github/workflows/deploy.yml`) handles automated re-deployment on every push to `main`.
+
+### Vercel (Recommended — 60 seconds)
+```bash
+npx vercel --prod
+```
+Or connect the GitHub repository at [vercel.com](https://vercel.com) for automatic deployments. The included `vercel.json` is pre-configured.
+
+---
+
+## Pre-loaded Sample Datasets
+
+| Squad | Domain | Characteristics |
+| :--- | :--- | :--- |
+| **Fintech Core Banking Squad** | Payments & Settlement | Strict compliance, high predictability (95.5%) |
+| **E-Commerce Mobile Squad** | iOS/Android Shopping | Fast cadence, heavy scope creep (+9SP mid-sprint) |
+| **Enterprise SaaS AI Platform** | Document Intelligence | Research spikes, review bottlenecks |
+
+---
+
+## Author
+
+**Numesh** — 3rd Year Undergraduate  
+*BSc (Hons) in Information Technology*  
+**Sabaragamuwa University of Sri Lanka (SUSL)** — Faculty of Applied Sciences
+
+*Aspiring Associate IT Project Manager / Scrum Master / Agile Delivery Specialist.*  
+*Passionate about bridging technology, agile execution, and data-driven project governance.*
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+<sub>Built with Vanilla JS · Chart.js · Zero Build Dependencies · Deployable in 60 seconds</sub>
+</div>
+
 
 ---
 
